@@ -25,8 +25,7 @@ export default function Sidebar() {
           <span className="text-xl">🌿</span>
           <h1 className="font-nunito font-bold text-[#3ECFB2] text-xl tracking-tight relative">
             NeuroBloom
-            <span className="absolute -top-1 -right-2 w-2 h-2 bg-[#3ECFB2] rounded-full animate-ping"></span>
-            <span className="absolute -top-1 -right-2 w-2 h-2 bg-[#3ECFB2] rounded-full"></span>
+            
           </h1>
         </div>
 

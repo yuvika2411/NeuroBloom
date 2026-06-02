@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import Link from "next/link";
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -105,13 +106,15 @@ export default function Pricing() {
                   ))}
                 </div>
 
-                <button className={`w-full py-3 rounded-2xl font-bold transition-all duration-150 ${
-                  plan.isPopular
-                    ? "bg-white text-[#1A9E8C] hover:bg-white/90 hover:scale-[1.02] active:scale-95 shadow-[0_4px_0_rgba(255,255,255,0.3)]"
-                    : "clay-btn-primary"
-                }`}>
-                  {plan.name === "Starter" ? "Join Waitlist" : "Pre-Register"}
-                </button>
+                <Link href="/dashboard" className="w-full">
+                  <button className={`w-full py-3 rounded-2xl font-bold transition-all duration-150 ${
+                    plan.isPopular
+                      ? "bg-white text-[#1A9E8C] hover:bg-white/90 hover:scale-[1.02] active:scale-95 shadow-[0_4px_0_rgba(255,255,255,0.3)]"
+                      : "clay-btn-primary"
+                  }`}>
+                    {plan.name === "Starter" ? "Join Waitlist" : "Pre-Register"}
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </div>

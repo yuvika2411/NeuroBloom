@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,8 +57,12 @@ export default function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="ghost-btn py-2 px-4 text-sm">Log In</button>
-            <button className="clay-btn-primary py-2 px-4 text-sm">Start Free Trial</button>
+            <Link href="/dashboard">
+              <button className="ghost-btn py-2 px-4 text-sm">Log In</button>
+            </Link>
+            <Link href="/dashboard">
+              <button className="clay-btn-primary py-2 px-4 text-sm">Start Free Trial</button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,8 +104,12 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="pt-4 flex flex-col space-y-3 px-3">
-                <button className="ghost-btn w-full">Log In</button>
-                <button className="clay-btn-primary w-full">Start Free Trial</button>
+                <Link href="/dashboard">
+                  <button className="ghost-btn w-full">Log In</button>
+                </Link>
+                <Link href="/dashboard">
+                  <button className="clay-btn-primary w-full">Start Free Trial</button>
+                </Link>
               </div>
             </div>
           </motion.div>

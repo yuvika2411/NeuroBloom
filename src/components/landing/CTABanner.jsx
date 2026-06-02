@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import Link from "next/link";
 
 export default function CTABanner() {
   return (
@@ -28,14 +29,16 @@ export default function CTABanner() {
               Join 500+ families already using NeuroBloom to support their children's journey.
             </motion.p>
             
-            <motion.button 
-              variants={fadeUp}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#1A9E8C] font-bold text-lg rounded-2xl px-8 py-4 shadow-[0_6px_0_rgba(255,255,255,0.4)] active:shadow-none active:translate-y-1.5 transition-all duration-150 flex items-center gap-2"
-            >
-              Create Free Account <span>→</span>
-            </motion.button>
+            <Link href="/dashboard">
+              <motion.button 
+                variants={fadeUp}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-[#1A9E8C] font-bold text-lg rounded-2xl px-8 py-4 shadow-[0_6px_0_rgba(255,255,255,0.4)] active:shadow-none active:translate-y-1.5 transition-all duration-150 flex items-center gap-2"
+              >
+                Create Free Account <span>→</span>
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

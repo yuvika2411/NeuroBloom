@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -87,9 +88,11 @@ export default function Hero() {
               variants={fadeUp}
               className="flex flex-col sm:flex-row flex-wrap gap-4 mb-10 w-full sm:w-auto"
             >
-              <button className="clay-btn-primary text-lg px-8 py-4 w-full sm:w-auto text-center">
-                Start Free Trial
-              </button>
+              <Link href="/dashboard" className="w-full sm:w-auto">
+                <button className="clay-btn-primary text-lg px-8 py-4 w-full text-center">
+                  Start Free Trial
+                </button>
+              </Link>
               <button className="ghost-btn text-lg flex items-center justify-center gap-2 px-8 py-4 w-full sm:w-auto bg-white/50 backdrop-blur-sm border-white">
                 <span className="bg-[#3ECFB2] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
                   ▶
