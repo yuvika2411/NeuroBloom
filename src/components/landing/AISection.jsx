@@ -2,26 +2,27 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import { Target, Smile, MessageCircle, Eye, Brain } from "lucide-react";
 
 export default function AISection() {
   const aiFeatures = [
     {
-      icon: "🎯",
+      icon: <Target />,
       title: "Adaptive Learning Engine",
       desc: "Adjusts difficulty in real time based on your child's response patterns"
     },
     {
-      icon: "😊",
+      icon: <Smile />,
       title: "Emotion Detection",
       desc: "Front-camera ML reads mood & attention during sessions (with parental consent)"
     },
     {
-      icon: "🗣️",
+      icon: <MessageCircle />,
       title: "NLP Speech Analysis",
       desc: "Tracks verbal communication growth over time"
     },
     {
-      icon: "👁️",
+      icon: <Eye />,
       title: "Attention Monitoring",
       desc: "Eye-tracking proxy via interaction heatmaps"
     }
@@ -53,7 +54,7 @@ export default function AISection() {
             {aiFeatures.map((feature, index) => (
               <motion.div key={index} variants={fadeUp} className="flex gap-6 items-start">
                 <div className="bg-[#3ECFB2]/20 p-4 rounded-2xl flex-shrink-0 border border-[#3ECFB2]/30 shadow-[0_4px_12px_rgba(62,207,178,0.1)]">
-                  <span className="text-2xl">{feature.icon}</span>
+                  <span className="flex items-center text-[#3ECFB2]">{feature.icon}</span>
                 </div>
                 <div>
                   <h3 className="font-nunito font-bold text-xl text-white mb-2">
@@ -73,8 +74,8 @@ export default function AISection() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#3ECFB2]/20 rounded-full blur-[50px]"></div>
             
             {/* Center Brain */}
-            <div className="relative z-10 w-32 h-32 bg-[#1B2D3E] border-2 border-[#3ECFB2] rounded-full flex items-center justify-center text-[64px] shadow-[0_0_40px_rgba(62,207,178,0.4)]">
-              🧠
+            <div className="relative z-10 w-32 h-32 bg-[#1B2D3E] border-2 border-[#3ECFB2] rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(62,207,178,0.4)]">
+              <Brain size={64} className="text-[#3ECFB2]" />
             </div>
 
             {/* Orbiting Elements */}

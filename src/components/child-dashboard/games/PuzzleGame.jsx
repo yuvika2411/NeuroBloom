@@ -4,15 +4,16 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
 import confetti from "canvas-confetti";
+import { Star, Moon, Sun, Flower, Bug, Leaf, Gift, Heart, Music, Puzzle, Brain, Microscope } from "lucide-react";
 
 export default function PuzzleGame() {
   const { setActiveGame, completeModule } = useChildStore();
   
   // Visual matching: Match the bright shape to its silhouette
   const levels = [
-    { target: "⭐", options: ["⭐", "🌙", "☀️"], correct: "⭐" },
-    { target: "🦋", options: ["🐌", "🦋", "🐛"], correct: "🦋" },
-    { target: "🎈", options: ["🎁", "🧸", "🎈"], correct: "🎈" }
+    { target: <Star size={100} fill="currentColor" className="text-[#FFB020]" />, options: [<Star size={64} fill="currentColor" className="text-[#FFB020]" />, <Moon size={64} fill="currentColor" className="text-[#C4B5FD]" />, <Sun size={64} fill="currentColor" className="text-[#FF7E6B]" />], correct: 0 },
+    { target: <Flower size={100} className="text-[#4A90D9]" />, options: [<Bug size={64} className="text-[#FF7E6B]" />, <Flower size={64} className="text-[#4A90D9]" />, <Leaf size={64} className="text-[#3ECFB2]" />], correct: 1 },
+    { target: <Gift size={100} className="text-[#FFB020]" />, options: [<Gift size={64} className="text-[#FFB020]" />, <Heart size={64} className="text-[#FF7E6B]" />, <Music size={64} className="text-[#4A90D9]" />], correct: 0 }
   ];
 
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -21,8 +22,8 @@ export default function PuzzleGame() {
   
   const level = levels[currentLevel];
 
-  const handleSelect = (option) => {
-    if (option === level.correct) {
+  const handleSelect = (idx) => {
+    if (idx === level.correct) {
       setFeedback("correct");
       if (currentLevel === levels.length - 1) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
@@ -57,12 +58,12 @@ export default function PuzzleGame() {
         className="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-white/70 backdrop-blur-md rounded-full flex items-center justify-center text-2xl shadow-sm border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50"
         title="For Parents: Science behind this game"
       >
-        🔬
+        <Microscope size={24} className="text-[#1B2D3E]" />
       </button>
 
       <div className="max-w-md w-full flex flex-col items-center">
         <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] mb-8 text-center">
-          Find the match! 🧩
+          Find the match! <Puzzle size={28} className="inline-block text-[#C4B5FD] ml-2 pb-1" />
         </h2>
 
         {/* Silhouette / Target */}
@@ -81,11 +82,11 @@ export default function PuzzleGame() {
               key={idx}
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleSelect(option)}
+              onClick={() => handleSelect(idx)}
               disabled={feedback !== null}
               className={`w-24 h-24 md:w-32 md:h-32 rounded-3xl flex items-center justify-center text-5xl md:text-6xl border-2 transition-all ${
-                feedback === "correct" && option === level.correct ? "bg-[#3ECFB2]/20 border-[#3ECFB2] shadow-md" :
-                feedback === "wrong" && option !== level.correct ? "bg-gray-100 border-gray-200 opacity-40 scale-95" :
+                feedback === "correct" && idx === level.correct ? "bg-[#3ECFB2]/20 border-[#3ECFB2] shadow-md" :
+                feedback === "wrong" && idx !== level.correct ? "bg-gray-100 border-gray-200 opacity-40 scale-95" :
                 "bg-white border-white/60 shadow-sm hover:border-[#3ECFB2]/50 hover:bg-white/90"
               }`}
             >
@@ -104,7 +105,7 @@ export default function PuzzleGame() {
                 exit={{ opacity: 0 }}
                 className="text-[#8FA3B1] font-dm-sans font-bold md:text-lg"
               >
-                Try again 💙
+                Try again <Heart size={18} className="inline-block text-[#4A90D9] ml-1 mb-1" />
               </motion.div>
             )}
             {feedback === "correct" && (
@@ -115,7 +116,7 @@ export default function PuzzleGame() {
                 exit={{ opacity: 0 }}
                 className="text-[#1A9E8C] font-dm-sans font-bold text-xl md:text-2xl"
               >
-                Perfect match! 🌟
+                Perfect match! <Star size={24} className="inline-block text-[#FFB020] ml-2 pb-1" fill="currentColor" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -143,7 +144,7 @@ export default function PuzzleGame() {
               >
                 ✕
               </button>
-              <div className="text-4xl mb-4">🧠</div>
+              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
               <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
                 Backed by Science
               </h3>

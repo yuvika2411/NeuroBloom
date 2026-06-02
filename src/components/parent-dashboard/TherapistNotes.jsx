@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useParentStore } from "../../stores/useParentStore";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import { Stethoscope } from "lucide-react";
 
 export default function TherapistNotes() {
   const { therapistNotes } = useParentStore();
@@ -34,7 +35,7 @@ export default function TherapistNotes() {
             </div>
             
             <div className="font-nunito font-bold text-[#1B2D3E] text-sm mb-2 flex items-center gap-1.5">
-              <span>👩‍⚕️</span> {note.author}
+              <span><Stethoscope size={16} /></span> {note.author}
             </div>
             <p className="font-dm-sans italic text-[#1B2D3E]/80 text-sm leading-relaxed">
               "{note.content}"

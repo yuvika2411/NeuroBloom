@@ -11,18 +11,17 @@ import PromptDependency from "../../../components/parent-dashboard/PromptDepende
 import UpcomingModules from "../../../components/parent-dashboard/UpcomingModules";
 import Achievements from "../../../components/parent-dashboard/Achievements";
 import SettingsPanel from "../../../components/parent-dashboard/SettingsPanel";
+import ConcentrationChart from "../../../components/parent-dashboard/ConcentrationChart";
+import CategoryTimeChart from "../../../components/parent-dashboard/CategoryTimeChart";
+import BehavioralLogChart from "../../../components/parent-dashboard/BehavioralLogChart";
+import VocabularyGrowthChart from "../../../components/parent-dashboard/VocabularyGrowthChart";
+import CompletionRateChart from "../../../components/parent-dashboard/CompletionRateChart";
+import SleepMoodChart from "../../../components/parent-dashboard/SleepMoodChart";
+import ClinicalReports from "../../../components/parent-dashboard/ClinicalReports";
 import { useParentStore } from "../../../stores/useParentStore";
 
 export default function ParentDashboardPage() {
   const { activeTab } = useParentStore();
-
-  const Placeholder = ({ title, emoji }) => (
-    <div className="bg-white/55 backdrop-blur-lg border border-white/60 rounded-3xl p-12 shadow-[0_8px_32px_rgba(62,207,178,0.12)] flex flex-col items-center justify-center min-h-[400px] text-center">
-      <div className="text-6xl mb-4">{emoji}</div>
-      <h2 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">{title}</h2>
-      <p className="font-dm-sans text-[#8FA3B1]">This module will be available soon.</p>
-    </div>
-  );
 
   const renderContent = () => {
     switch (activeTab) {
@@ -41,10 +40,17 @@ export default function ParentDashboardPage() {
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <MoodChart />
+              <ConcentrationChart />
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+              <CategoryTimeChart />
               <SkillBars />
             </div>
             
-            <PromptDependency />
+            <div className="mt-6">
+              <PromptDependency />
+            </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-12">
               <UpcomingModules />
@@ -55,6 +61,14 @@ export default function ParentDashboardPage() {
       case "progress":
         return (
           <div className="space-y-6 pb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <VocabularyGrowthChart />
+              <CompletionRateChart />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ConcentrationChart />
+              <CategoryTimeChart />
+            </div>
             <SkillBars />
             <PromptDependency />
             <Achievements />
@@ -64,6 +78,14 @@ export default function ParentDashboardPage() {
         return (
           <div className="space-y-6 pb-12">
             <MoodChart />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <SleepMoodChart />
+              <BehavioralLogChart />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ConcentrationChart />
+              <CategoryTimeChart />
+            </div>
           </div>
         );
       case "sessions":
@@ -80,7 +102,11 @@ export default function ParentDashboardPage() {
           </div>
         );
       case "reports":
-        return <Placeholder title="Clinical Reports" emoji="📋" />;
+        return (
+          <div className="space-y-6 pb-12 max-w-4xl mx-auto">
+            <ClinicalReports />
+          </div>
+        );
       case "settings":
         return <SettingsPanel />;
       default:

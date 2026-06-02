@@ -4,14 +4,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
 import confetti from "canvas-confetti";
+import { Apple, Cat, Car, HelpCircle, Heart, Star, Brain, Microscope } from "lucide-react";
 
 export default function WordMatchGame() {
   const { setActiveGame, completeModule } = useChildStore();
   
   const levels = [
-    { emoji: "🍎", options: ["Apple", "Banana", "Dog"], correct: "Apple" },
-    { emoji: "🐈", options: ["Bird", "Cat", "Cow"], correct: "Cat" },
-    { emoji: "🚗", options: ["Car", "Bus", "Train"], correct: "Car" }
+    { icon: <Apple size={100} className="text-[#FF7E6B]" />, options: ["Apple", "Banana", "Dog"], correct: "Apple" },
+    { icon: <Cat size={100} className="text-[#FFB020]" />, options: ["Bird", "Cat", "Cow"], correct: "Cat" },
+    { icon: <Car size={100} className="text-[#4A90D9]" />, options: ["Car", "Bus", "Train"], correct: "Car" }
   ];
 
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -56,12 +57,12 @@ export default function WordMatchGame() {
         className="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-white/70 backdrop-blur-md rounded-full flex items-center justify-center text-2xl shadow-sm border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50"
         title="For Parents: Science behind this game"
       >
-        🔬
+        <Microscope size={24} className="text-[#1B2D3E]" />
       </button>
 
       <div className="max-w-md w-full flex flex-col items-center">
         <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] mb-8 text-center">
-          What is this? 🤔
+          What is this? <HelpCircle size={28} className="inline-block text-[#4A90D9] ml-2 pb-1" />
         </h2>
 
         <motion.div 
@@ -70,7 +71,7 @@ export default function WordMatchGame() {
           animate={{ scale: 1, opacity: 1 }}
           className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-sm border-2 border-[#3ECFB2]/20 flex items-center justify-center text-6xl md:text-8xl mb-12"
         >
-          {level.emoji}
+          {level.icon}
         </motion.div>
 
         <div className="w-full space-y-4">
@@ -102,7 +103,7 @@ export default function WordMatchGame() {
                 exit={{ opacity: 0 }}
                 className="text-[#8FA3B1] font-dm-sans font-bold md:text-lg"
               >
-                Try again 💙
+                Try again <Heart size={18} className="inline-block text-[#4A90D9] ml-1 mb-1" />
               </motion.div>
             )}
             {feedback === "correct" && (
@@ -113,7 +114,7 @@ export default function WordMatchGame() {
                 exit={{ opacity: 0 }}
                 className="text-[#1A9E8C] font-dm-sans font-bold text-xl md:text-2xl"
               >
-                Great job! 🌟
+                Great job! <Star size={24} className="inline-block text-[#FFB020] ml-2 pb-1" fill="currentColor" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -141,7 +142,7 @@ export default function WordMatchGame() {
               >
                 ✕
               </button>
-              <div className="text-4xl mb-4">🧠</div>
+              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
               <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
                 Backed by Science
               </h3>

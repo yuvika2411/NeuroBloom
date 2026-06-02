@@ -3,9 +3,16 @@
 import { motion } from "framer-motion";
 import { useParentStore } from "../../stores/useParentStore";
 import { staggerContainer, fadeUp, clayHover } from "../../lib/animations";
+import { Star, Palette, Type, Puzzle, Gamepad2 } from "lucide-react";
 
 export default function UpcomingModules() {
   const { upcomingModules } = useParentStore();
+
+  const moduleIconMap = {
+    '🎭': <Palette size={32} className="text-[#4A90D9]" />,
+    '🔤': <Type size={32} className="text-[#FF7E6B]" />,
+    '🧩': <Puzzle size={32} className="text-[#C4B5FD]" />,
+  };
 
   const getBorderColor = (skill) => {
     switch(skill) {
@@ -17,7 +24,7 @@ export default function UpcomingModules() {
   };
 
   const getDifficultyStars = (level) => {
-    return Array(level).fill("⭐").join("");
+    return Array(level).fill(0).map((_, i) => <Star key={i} size={10} fill="currentColor" className="inline-block" />);
   };
 
   return (
@@ -39,7 +46,7 @@ export default function UpcomingModules() {
               whileHover={clayHover}
               className={`bg-white/80 backdrop-blur-md border border-white/60 rounded-2xl p-4 shadow-sm min-w-[240px] flex-1 flex flex-col border-l-4 ${getBorderColor(mod.skill)} cursor-pointer`}
             >
-              <div className="text-3xl mb-2">{mod.emoji}</div>
+              <div className="mb-2">{moduleIconMap[mod.emoji] || <Gamepad2 size={32} />}</div>
               <h3 className="font-nunito font-bold text-[#1B2D3E] text-sm mb-2 leading-tight">
                 {mod.title}
               </h3>

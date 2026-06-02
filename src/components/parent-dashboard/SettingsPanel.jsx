@@ -1,22 +1,23 @@
 "use client";
 
 import { useChildStore } from "../../stores/useChildStore";
+import { Palette, Flower, Square, Moon, Settings, Sun, Volume2, ImageIcon, Paintbrush } from "lucide-react";
 
 export default function SettingsPanel() {
   const { displaySettings, setDisplaySettings } = useChildStore();
 
   const themes = [
-    { id: 'default', name: 'Vibrant & Playful', emoji: '🌈', desc: 'Default bright colors for active engagement' },
-    { id: 'pastel', name: 'Soft Pastels', emoji: '🌸', desc: 'Calming, low-sensory color palette' },
-    { id: 'high-contrast', name: 'High Contrast', emoji: '⬛', desc: 'Distinct visual boundaries for focus' },
-    { id: 'dark', name: 'Night Owl', emoji: '🌙', desc: 'Low light emission for sensitive eyes' }
+    { id: 'default', name: 'Vibrant & Playful', icon: <Palette size={24} />, desc: 'Default bright colors for active engagement' },
+    { id: 'pastel', name: 'Soft Pastels', icon: <Flower size={24} />, desc: 'Calming, low-sensory color palette' },
+    { id: 'high-contrast', name: 'High Contrast', icon: <Square size={24} />, desc: 'Distinct visual boundaries for focus' },
+    { id: 'dark', name: 'Night Owl', icon: <Moon size={24} />, desc: 'Low light emission for sensitive eyes' }
   ];
 
   return (
     <div className="bg-white/55 backdrop-blur-lg border border-white/60 rounded-3xl p-6 md:p-12 shadow-[0_8px_32px_rgba(62,207,178,0.12)]">
       <div className="flex items-center gap-4 mb-8">
         <div className="w-12 h-12 bg-[#3ECFB2]/20 rounded-xl flex items-center justify-center text-2xl">
-          ⚙️
+          <Settings size={28} className="text-[#3ECFB2]" />
         </div>
         <div>
           <h2 className="font-nunito font-bold text-2xl text-[#1B2D3E]">Child Display Settings</h2>
@@ -29,7 +30,7 @@ export default function SettingsPanel() {
         <div className="space-y-8">
           <div>
             <h3 className="font-nunito font-bold text-[#1B2D3E] text-lg mb-2 flex items-center gap-2">
-              <span>☀️</span> Screen Brightness
+              <span className="text-[#FFB020]"><Sun size={20} /></span> Screen Brightness
             </h3>
             <p className="font-dm-sans text-sm text-[#8FA3B1] mb-4">Adjust the overall light emission of the child's screen.</p>
             <div className="flex items-center gap-4">
@@ -48,7 +49,7 @@ export default function SettingsPanel() {
 
           <div>
             <h3 className="font-nunito font-bold text-[#1B2D3E] text-lg mb-2 flex items-center gap-2">
-              <span>🎨</span> Color Saturation
+              <span className="text-[#4A90D9]"><Palette size={20} /></span> Color Saturation
             </h3>
             <p className="font-dm-sans text-sm text-[#8FA3B1] mb-4">Lower saturation for a calmer visual experience.</p>
             <div className="flex items-center gap-4">
@@ -67,7 +68,7 @@ export default function SettingsPanel() {
 
           <div>
             <h3 className="font-nunito font-bold text-[#1B2D3E] text-lg mb-2 flex items-center gap-2">
-              <span>🔊</span> UI Sound Effects
+              <span className="text-[#FF7E6B]"><Volume2 size={20} /></span> UI Sound Effects
             </h3>
             <p className="font-dm-sans text-sm text-[#8FA3B1] mb-4">Playfully responsive sounds when tapping child dashboard icons.</p>
             <div className="flex items-center gap-4">
@@ -85,7 +86,7 @@ export default function SettingsPanel() {
 
           <div>
             <h3 className="font-nunito font-bold text-[#1B2D3E] text-lg mb-2 flex items-center gap-2">
-              <span>🖼️</span> Custom Background Image
+              <span className="text-[#3ECFB2]"><ImageIcon size={20} /></span> Custom Background Image
             </h3>
             <p className="font-dm-sans text-sm text-[#8FA3B1] mb-4">Upload a familiar photo (like a family picture) for the dashboard background.</p>
             <div className="flex items-center gap-4">
@@ -131,7 +132,7 @@ export default function SettingsPanel() {
         {/* Color Palette Themes */}
         <div>
           <h3 className="font-nunito font-bold text-[#1B2D3E] text-lg mb-4 flex items-center gap-2">
-            <span>🎭</span> Visual Themes
+            <span className="text-[#C4B5FD]"><Paintbrush size={20} /></span> Visual Themes
           </h3>
           <div className="grid grid-cols-1 gap-4">
             {themes.map(t => {
@@ -147,7 +148,7 @@ export default function SettingsPanel() {
                   }`}
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${isActive ? 'bg-white shadow-sm' : 'bg-gray-100'}`}>
-                    {t.emoji}
+                    {t.icon}
                   </div>
                   <div>
                     <div className={`font-nunito font-bold ${isActive ? 'text-[#1A9E8C]' : 'text-[#1B2D3E]'}`}>

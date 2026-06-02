@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Leaf } from "lucide-react";
 
 export default function Footer() {
   const footerLinks = [
@@ -28,8 +29,8 @@ export default function Footer() {
           {/* Logo & Tagline */}
           <div className="w-full md:w-1/3">
             <div className="flex items-center mb-4">
-              <span className="font-nunito font-bold text-2xl text-white">
-                <span className="text-[#3ECFB2]">🌿</span> NeuroBloom
+              <span className="font-nunito font-bold text-2xl text-white flex items-center gap-2">
+                <Leaf className="text-[#3ECFB2]" size={28} /> NeuroBloom
               </span>
             </div>
             <p className="font-dm-sans text-white/60 text-lg">

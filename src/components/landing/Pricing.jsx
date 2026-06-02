@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
 import Link from "next/link";
+import { Star } from "lucide-react";
 
 export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -82,8 +83,8 @@ export default function Pricing() {
                 }`}
               >
                 {plan.isPopular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-[#1A9E8C] font-nunito font-bold text-xs uppercase tracking-wider py-1.5 px-4 rounded-full shadow-md border border-[#E8FAF6]">
-                    ⭐ Most Popular
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-[#1A9E8C] font-nunito font-bold text-xs uppercase tracking-wider py-1.5 px-4 rounded-full shadow-md border border-[#E8FAF6] flex items-center gap-1">
+                    <Star size={12} fill="currentColor" /> Most Popular
                   </div>
                 )}
 

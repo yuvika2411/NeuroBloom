@@ -1,6 +1,7 @@
 "use client";
 
 import { useParentStore } from "../../stores/useParentStore";
+import { Hand, Bell } from "lucide-react";
 
 export default function HeaderBar() {
   const { parent } = useParentStore();
@@ -14,7 +15,7 @@ export default function HeaderBar() {
       {/* Left */}
       <div>
         <h1 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-1">
-          Good morning, {parent.name} 👋
+          Good morning, {parent.name} <Hand size={24} className="inline-block text-[#FFB020] ml-1 mb-1" />
         </h1>
         <div className="font-dm-sans text-sm text-[#8FA3B1]">
           {dateString}
@@ -24,7 +25,7 @@ export default function HeaderBar() {
       {/* Right */}
       <div className="flex items-center gap-6">
         <button className="relative text-2xl text-[#8FA3B1] hover:text-[#1B2D3E] transition-colors">
-          🔔
+          <Bell size={24} />
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#FF7E6B] rounded-full text-white text-[9px] font-bold flex items-center justify-center border-2 border-white">
             2
           </span>

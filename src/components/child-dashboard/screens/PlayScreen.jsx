@@ -8,6 +8,7 @@ import WordMatchGame from "../games/WordMatchGame";
 import PuzzleGame from "../games/PuzzleGame";
 import BallTrackingGame from "../games/BallTrackingGame";
 import { useSoundEffect } from "../../../hooks/useSoundEffect";
+import { Smile, Type, Puzzle, Crosshair, Calendar, Gamepad2, Brain, Microscope } from "lucide-react";
 
 export default function PlayScreen() {
   const { activeGame, setActiveGame, setScreen } = useChildStore();
@@ -16,7 +17,7 @@ export default function PlayScreen() {
 
   const games = [
     { 
-      id: "emotion-match", emoji: "😊", label: "Feelings", gradient: "from-[#3ECFB2]/30 to-[#4A90D9]/20", action: () => setActiveGame('emotion-match'),
+      id: "emotion-match", icon: <Smile size={64} className="text-[#3ECFB2]" strokeWidth={2.5} />, label: "Feelings", gradient: "from-[#E8FAF6] to-[#3ECFB2]/30", action: () => setActiveGame('emotion-match'),
       research: {
         title: "Facial Emotion Recognition (FER)",
         desc: "Research demonstrates that guided digital interventions significantly improve emotion identification, reaction time, and social cognition in children and adolescents with Autism Spectrum Disorder.",
@@ -24,7 +25,7 @@ export default function PlayScreen() {
       }
     },
     { 
-      id: "word-match", emoji: "🔤", label: "Words", gradient: "from-[#C4B5FD]/40 to-[#4A90D9]/20", action: () => setActiveGame('word-match'),
+      id: "word-match", icon: <Type size={64} className="text-[#FF7E6B]" strokeWidth={2.5} />, label: "Words", gradient: "from-[#FFF0ED] to-[#FF7E6B]/30", action: () => setActiveGame('word-match'),
       research: {
         title: "Picture-to-Word Mapping",
         desc: "Clinical research indicates that combining visual supports with textual pairing is a highly effective strategy for vocabulary acquisition and reading comprehension in individuals with autism.",
@@ -32,7 +33,7 @@ export default function PlayScreen() {
       }
     },
     { 
-      id: "puzzle", emoji: "🧩", label: "Puzzles", gradient: "from-[#FFF4E3] to-[#FF7E6B]/15", action: () => setActiveGame('puzzle'),
+      id: "puzzle", icon: <Puzzle size={64} className="text-[#C4B5FD]" strokeWidth={2.5} />, label: "Puzzles", gradient: "from-[#F3F0FF] to-[#C4B5FD]/30", action: () => setActiveGame('puzzle'),
       research: {
         title: "Visual Pattern Matching",
         desc: "Research indicates that individuals with autism often demonstrate superior performance in perceiving local details and extracting visual patterns. This game leverages that distinct cognitive profile to build confidence and working memory.",
@@ -40,14 +41,14 @@ export default function PlayScreen() {
       }
     },
     { 
-      id: "ball-tracker", emoji: "🎯", label: "Focus Ball", gradient: "from-[#FDE047]/30 to-[#F97316]/20", action: () => setActiveGame('ball-tracker'),
+      id: "ball-tracker", icon: <Crosshair size={64} className="text-[#FFB020]" strokeWidth={2.5} />, label: "Focus Ball", gradient: "from-[#FFF8E6] to-[#FFB020]/30", action: () => setActiveGame('ball-tracker'),
       research: {
         title: "Smooth Pursuit Eye Movement",
         desc: "Research demonstrates that computerized visual tracking exercises significantly improve response inhibition, cognitive control, and sustained attention (focus) in children with ADHD.",
         link: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6404780/"
       }
     },
-    { id: "schedule", emoji: "📅", label: "Schedule", gradient: "from-[#E8FAF6] to-[#3ECFB2]/20", action: () => setScreen('schedule') },
+    { id: "schedule", icon: <Calendar size={64} className="text-[#4A90D9]" strokeWidth={2.5} />, label: "Schedule", gradient: "from-[#EBF3FC] to-[#4A90D9]/30", action: () => setScreen('schedule') },
   ];
 
   if (activeGame === 'emotion-match') {
@@ -69,7 +70,7 @@ export default function PlayScreen() {
   return (
     <div className="flex flex-col max-w-4xl mx-auto h-full px-4 md:px-8">
       <h1 className="font-nunito font-bold text-[24px] md:text-[32px] text-center pt-6 pb-6 md:pb-10 text-[#1B2D3E]">
-        Let's Play! 🎮
+        Let's Play! <Gamepad2 size={32} className="inline-block text-[#3ECFB2] ml-2 pb-1" />
       </h1>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 flex-1 content-start md:content-center pb-4">
@@ -93,10 +94,12 @@ export default function PlayScreen() {
                 className="absolute top-4 right-4 w-10 h-10 bg-white/50 backdrop-blur-sm rounded-full flex items-center justify-center text-lg hover:bg-white hover:scale-110 transition-all border border-white/60 shadow-sm"
                 title="For Parents: Science behind this game"
               >
-                🔬
+                <Microscope size={20} className="text-[#1B2D3E]" />
               </button>
             )}
-            <span className="text-5xl md:text-[80px] mb-4 md:mb-6 block drop-shadow-md group-hover:animate-bounce">{game.emoji}</span>
+            <div className="mb-4 md:mb-6 group-hover:animate-bounce bg-white/70 backdrop-blur-sm w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-[28px] shadow-[0_4px_12px_rgba(0,0,0,0.05)] border-2 border-white flex items-center justify-center transition-all group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] group-hover:scale-105">
+              {game.icon}
+            </div>
             <span className="font-nunito font-bold text-[#1B2D3E] text-lg md:text-[24px]">
               {game.label}
             </span>
@@ -106,7 +109,7 @@ export default function PlayScreen() {
 
       <div className="flex justify-center pb-8 mt-2">
         <div className="bg-white/60 backdrop-blur-md border border-[#3ECFB2]/30 px-5 md:px-6 py-3 rounded-2xl flex items-center gap-3 text-[#1A9E8C] font-dm-sans font-bold shadow-sm text-sm md:text-base">
-          <span className="text-xl">🔬</span> All modules are backed by clinical ASD research
+          <Microscope size={20} className="text-[#1A9E8C]" /> All modules are backed by clinical ASD research
         </div>
       </div>
 
@@ -131,7 +134,7 @@ export default function PlayScreen() {
               >
                 ✕
               </button>
-              <div className="text-4xl mb-4">🧠</div>
+              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
               <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
                 Backed by Science
               </h3>

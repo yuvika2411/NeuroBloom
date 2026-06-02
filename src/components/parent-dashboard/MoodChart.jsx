@@ -3,6 +3,17 @@
 import { useParentStore } from "../../stores/useParentStore";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from "react";
+import { Smile, Frown, Meh } from "lucide-react";
+
+const getIconForEmoji = (emoji, props) => {
+  switch (emoji) {
+    case '😄': return <Smile {...props} className="text-[#FFB020]" />;
+    case '😊': return <Smile {...props} className="text-[#3ECFB2]" />;
+    case '😐': return <Meh {...props} className="text-[#4A90D9]" />;
+    case '😢': return <Frown {...props} className="text-[#FF7E6B]" />;
+    default: return <Smile {...props} className="text-[#3ECFB2]" />;
+  }
+};
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -11,7 +22,7 @@ const CustomTooltip = ({ active, payload, label }) => {
       <div className="bg-white/80 backdrop-blur-md border border-white/60 rounded-xl p-3 shadow-lg">
         <p className="font-dm-sans font-bold text-[#1B2D3E] text-sm mb-1">{label}</p>
         <div className="flex items-center gap-2">
-          <span className="text-xl">{data.emoji}</span>
+          {getIconForEmoji(data.emoji, { size: 20 })}
           <span className="font-sora font-bold text-[#3ECFB2]">{data.score}/5</span>
         </div>
       </div>
@@ -24,9 +35,9 @@ const CustomizedDot = (props) => {
   const { cx, cy, payload } = props;
 
   return (
-    <text x={cx} y={cy} dy={6} dx={-9} fontSize="18" textAnchor="middle">
-      {payload.emoji}
-    </text>
+    <foreignObject x={cx - 12} y={cy - 12} width={24} height={24}>
+      {getIconForEmoji(payload.emoji, { size: 24, strokeWidth: 2.5 })}
+    </foreignObject>
   );
 };
 
@@ -47,7 +58,7 @@ export default function MoodChart() {
         </span>
       </div>
 
-      <div className="flex-1 w-full min-h-[200px]">
+      <div className="w-full h-[250px] mt-4">
         {mounted && (
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={weeklyMoodData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

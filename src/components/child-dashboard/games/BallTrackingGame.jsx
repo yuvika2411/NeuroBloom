@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
 import confetti from "canvas-confetti";
+import { Star, Timer, Crosshair, Sparkles, Trophy, RefreshCw, Brain, Microscope } from "lucide-react";
 
 export default function BallTrackingGame() {
   const { setActiveGame, completeModule } = useChildStore();
@@ -84,22 +85,22 @@ export default function BallTrackingGame() {
         className="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-white/70 backdrop-blur-md rounded-full flex items-center justify-center text-2xl shadow-sm border border-white hover:bg-white transition-colors z-50"
         title="For Parents: Science behind this game"
       >
-        🔬
+        <Microscope size={24} className="text-[#1B2D3E]" />
       </button>
 
       {/* Bottom Bar for Score and Timer */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-50">
         <div className="bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center font-nunito font-bold text-[#3ECFB2] shadow-lg border-2 border-white px-6 py-3 text-xl md:text-2xl min-w-[140px]">
-          {score} / {targetScore} 🌟
+          {score} / {targetScore} <Star size={20} className="inline-block text-[#FFB020]" fill="currentColor" />
         </div>
         <div className={`bg-white/90 backdrop-blur-md rounded-2xl flex items-center justify-center font-dm-sans font-bold shadow-lg border-2 border-white px-6 py-3 text-xl md:text-2xl min-w-[120px] ${timeLeft <= 10 ? 'text-[#FF7E6B] animate-pulse' : 'text-[#8FA3B1]'}`}>
-          ⏱ {timeLeft}s
+          <Timer size={20} className="inline-block mr-1 pb-0.5" /> {timeLeft}s
         </div>
       </div>
       
       <div className="absolute top-24 left-0 right-0 text-center pointer-events-none z-40">
         <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] mb-2 bg-white/80 inline-block px-8 py-3 rounded-full backdrop-blur-md shadow-sm border border-white">
-          Catch the glowing ball! 🎯
+          Catch the glowing ball! <Crosshair size={24} className="inline-block text-[#FF7E6B] ml-2 pb-1" />
         </h2>
       </div>
 
@@ -118,7 +119,7 @@ export default function BallTrackingGame() {
           className="absolute w-24 h-24 md:w-32 md:h-32 -ml-12 -mt-12 md:-ml-16 md:-mt-16 rounded-full bg-[#FDE047] shadow-[0_0_60px_rgba(253,224,71,0.8)] border-4 border-white flex items-center justify-center text-5xl md:text-7xl cursor-pointer hover:scale-105 active:scale-95 transition-transform z-10"
           whileTap={{ scale: 0.8 }}
         >
-          ✨
+          <Sparkles size={48} className="text-white" />
         </motion.button>
       )}
 
@@ -128,7 +129,7 @@ export default function BallTrackingGame() {
           animate={{ scale: 1 }}
           className="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 text-center shadow-lg border-2 border-[#3ECFB2]/30 z-50"
         >
-          <span className="text-6xl md:text-8xl mb-4 block">🏆</span>
+          <div className="flex justify-center mb-4 text-[#FFB020]"><Trophy size={80} /></div>
           <h2 className="font-nunito font-bold text-2xl md:text-4xl text-[#1B2D3E]">
             Amazing Focus!
           </h2>
@@ -144,7 +145,7 @@ export default function BallTrackingGame() {
           animate={{ scale: 1, opacity: 1 }}
           className="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 text-center shadow-lg border-2 border-[#FF7E6B]/30 z-50 flex flex-col items-center"
         >
-          <span className="text-6xl md:text-8xl mb-4 block">⏳</span>
+          <div className="flex justify-center mb-4 text-[#FF7E6B]"><Timer size={80} /></div>
           <h2 className="font-nunito font-bold text-2xl md:text-4xl text-[#1B2D3E]">
             Time's Up!
           </h2>
@@ -160,7 +161,7 @@ export default function BallTrackingGame() {
             }}
             className="bg-[#3ECFB2] text-white px-8 py-3 rounded-xl font-nunito font-bold text-xl shadow-[0_4px_0_#1A9E8C] active:translate-y-1 active:shadow-none transition-all"
           >
-            Play Again 🔄
+            <span className="flex items-center justify-center gap-2">Play Again <RefreshCw size={20} /></span>
           </button>
         </motion.div>
       )}
@@ -186,7 +187,7 @@ export default function BallTrackingGame() {
               >
                 ✕
               </button>
-              <div className="text-4xl mb-4">🧠</div>
+              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
               <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
                 Backed by Science
               </h3>

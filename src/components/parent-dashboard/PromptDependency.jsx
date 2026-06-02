@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useParentStore } from "../../stores/useParentStore";
 import { staggerContainer } from "../../lib/animations";
+import { PartyPopper } from "lucide-react";
 
 export default function PromptDependency() {
   const { promptDependency, child } = useParentStore();
@@ -88,7 +89,7 @@ export default function PromptDependency() {
 
       <div className="bg-[#3ECFB2] rounded-2xl p-4 text-center shadow-[0_4px_12px_rgba(62,207,178,0.3)] mt-auto">
         <p className="font-nunito font-bold text-white text-sm">
-          {child.name} is {latestInd}% independent this week — up from {firstInd}% at start. 🎉
+          {child.name} is {latestInd}% independent this week — up from {firstInd}% at start. <PartyPopper size={16} className="inline-block ml-1 pb-0.5" />
         </p>
       </div>
     </div>

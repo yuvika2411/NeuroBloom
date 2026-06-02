@@ -20,6 +20,76 @@ export const useParentStore = create((set) => ({
     { day: 'Sat', score: 4.7, emoji: '😄' },
     { day: 'Sun', score: 4.2, emoji: '😊' },
   ],
+  concentrationData: [
+    { day: 'Mon', focusScore: 75, attentionSpan: 12 },
+    { day: 'Tue', focusScore: 82, attentionSpan: 15 },
+    { day: 'Wed', focusScore: 68, attentionSpan: 10 },
+    { day: 'Thu', focusScore: 88, attentionSpan: 18 },
+    { day: 'Fri', focusScore: 92, attentionSpan: 22 },
+    { day: 'Sat', focusScore: 85, attentionSpan: 16 },
+    { day: 'Sun', focusScore: 78, attentionSpan: 14 },
+  ],
+  categoryTimeData: [
+    { name: 'Emotions', value: 45, color: '#FFB020' },
+    { name: 'Communication', value: 30, color: '#3ECFB2' },
+    { name: 'Puzzles', value: 15, color: '#4A90D9' },
+    { name: 'Social', value: 10, color: '#C4B5FD' },
+  ],
+  behavioralData: [
+    { day: 'Mon', incidents: 2, intensity: 3 },
+    { day: 'Tue', incidents: 1, intensity: 2 },
+    { day: 'Wed', incidents: 3, intensity: 4 },
+    { day: 'Thu', incidents: 0, intensity: 0 },
+    { day: 'Fri', incidents: 1, intensity: 2 },
+    { day: 'Sat', incidents: 0, intensity: 0 },
+    { day: 'Sun', incidents: 1, intensity: 1 },
+  ],
+  vocabularyData: [
+    { week: 'Week 1', wordsLearned: 5, cumulative: 5 },
+    { week: 'Week 2', wordsLearned: 8, cumulative: 13 },
+    { week: 'Week 3', wordsLearned: 6, cumulative: 19 },
+    { week: 'Week 4', wordsLearned: 12, cumulative: 31 },
+  ],
+  completionData: [
+    { name: 'Completed', value: 75, color: '#3ECFB2' },
+    { name: 'Prompted', value: 15, color: '#FFC043' },
+    { name: 'Abandoned', value: 10, color: '#FF7E6B' },
+  ],
+  sleepMoodData: [
+    { day: 'Mon', sleepHours: 7.5, moodScore: 3.5 },
+    { day: 'Tue', sleepHours: 8.5, moodScore: 4.0 },
+    { day: 'Wed', sleepHours: 8.0, moodScore: 3.8 },
+    { day: 'Thu', sleepHours: 9.5, moodScore: 4.5 },
+    { day: 'Fri', sleepHours: 9.0, moodScore: 4.2 },
+    { day: 'Sat', sleepHours: 10.0, moodScore: 4.7 },
+    { day: 'Sun', sleepHours: 8.5, moodScore: 4.2 },
+  ],
+  clinicalReports: [
+    {
+      id: 'r1',
+      title: 'Weekly Progress Report',
+      date: 'June 2, 2026',
+      type: 'Progress',
+      summary: 'Arjun showed a 15% increase in independent task completion this week. Notable improvements in the Emotion Recognition modules.',
+      details: 'This week, Arjun completed 14 modules. The most significant progress was observed during the Social Story exercises. Meltdowns decreased by 20% compared to last week. Sleep quality has been consistently good, which correlates with higher focus scores during morning sessions.'
+    },
+    {
+      id: 'r2',
+      title: 'Category Training: Communication',
+      date: 'May 28, 2026',
+      type: 'Category',
+      summary: 'Focus on AAC board usage and vocabulary expansion.',
+      details: 'Over the past month, Arjun has successfully integrated 12 new symbols into daily use. Prompt dependency for communication has dropped to 30%. Next phase will focus on forming 3-symbol sentences.'
+    },
+    {
+      id: 'r3',
+      title: 'Monthly Behavioral Summary',
+      date: 'May 15, 2026',
+      type: 'Behavioral',
+      summary: 'Overall decrease in trigger intensity; transition periods remain challenging.',
+      details: 'A review of the past 30 days indicates that transitions between highly preferred and non-preferred activities are the primary triggers. Recommend introducing visual timers 5 minutes prior to transitions.'
+    }
+  ],
   skillProgress: [
     { label: 'Communication',      value: 68, color: '#3ECFB2' },
     { label: 'Emotion Recognition', value: 55, color: '#C4B5FD' },

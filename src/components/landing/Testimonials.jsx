@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import { Star } from "lucide-react";
 
 export default function Testimonials() {
   const testimonials = [
@@ -50,8 +51,12 @@ export default function Testimonials() {
                 </div>
 
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex gap-1 mb-6 text-[#FFB020] text-sm">
-                    ⭐⭐⭐⭐⭐
+                  <div className="flex gap-1 mb-6 text-[#FFB020]">
+                    <Star size={16} fill="currentColor" />
+                    <Star size={16} fill="currentColor" />
+                    <Star size={16} fill="currentColor" />
+                    <Star size={16} fill="currentColor" />
+                    <Star size={16} fill="currentColor" />
                   </div>
                   
                   <p className="font-dm-sans italic text-lg text-[#1B2D3E] mb-8 leading-relaxed flex-grow">

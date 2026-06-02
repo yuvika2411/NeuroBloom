@@ -2,29 +2,30 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp, clayHover } from "../../lib/animations";
+import { MessageCircle, Brain, Heart, ClipboardList } from "lucide-react";
 
 export default function Features() {
   const features = [
     {
-      icon: "🗣️",
+      icon: <MessageCircle size={32} className="text-[#3ECFB2]" />,
       gradient: "from-[#3ECFB2]/20 to-[#4A90D9]/10",
       title: "Communication Tools",
       body: "AAC symbol boards, speech-to-text, picture exchange — all in one adaptive interface."
     },
     {
-      icon: "🧠",
+      icon: <Brain size={32} className="text-[#4A90D9]" />,
       gradient: "from-[#4A90D9]/20 to-[#C4B5FD]/20",
       title: "Cognitive Development",
       body: "Matching games, pattern puzzles, vocabulary builders — graded by AI to the child's current level."
     },
     {
-      icon: "💛",
+      icon: <Heart size={32} className="text-[#FF7E6B]" />,
       gradient: "from-[#FFF4E3] to-[#FF7E6B]/10",
       title: "Social & Emotional Learning",
       body: "Emotion recognition games, social story builder, empathy simulations."
     },
     {
-      icon: "📋",
+      icon: <ClipboardList size={32} className="text-[#C4B5FD]" />,
       gradient: "from-[#C4B5FD]/20 to-[#3ECFB2]/10",
       title: "Executive Function",
       body: "Visual schedules, First-Then boards, countdown timers — reduces anxiety, builds routine."

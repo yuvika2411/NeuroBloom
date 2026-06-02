@@ -3,18 +3,19 @@
 import { useState } from "react";
 import { useParentStore } from "../../stores/useParentStore";
 import Link from "next/link";
+import { Home, TrendingUp, Smile, Gamepad2, ClipboardList, Stethoscope, Settings, Leaf, Flame } from "lucide-react";
 
 export default function Sidebar() {
   const { child, parent, activeTab, setActiveTab } = useParentStore();
 
   const navItems = [
-    { id: "overview", icon: "🏠", label: "Overview" },
-    { id: "progress", icon: "📈", label: "Progress" },
-    { id: "mood", icon: "😊", label: "Mood & Emotions" },
-    { id: "sessions", icon: "🎮", label: "Sessions" },
-    { id: "reports", icon: "📋", label: "Reports" },
-    { id: "notes", icon: "👩‍⚕️", label: "Therapist Notes" },
-    { id: "settings", icon: "⚙️", label: "Settings" },
+    { id: "overview", icon: <Home size={20} />, label: "Overview" },
+    { id: "progress", icon: <TrendingUp size={20} />, label: "Progress" },
+    { id: "mood", icon: <Smile size={20} />, label: "Mood & Emotions" },
+    { id: "sessions", icon: <Gamepad2 size={20} />, label: "Sessions" },
+    { id: "reports", icon: <ClipboardList size={20} />, label: "Reports" },
+    { id: "notes", icon: <Stethoscope size={20} />, label: "Therapist Notes" },
+    { id: "settings", icon: <Settings size={20} />, label: "Settings" },
   ];
 
   return (
@@ -22,7 +23,7 @@ export default function Sidebar() {
       {/* Top Section */}
       <div className="p-6">
         <div className="flex items-center gap-2 mb-8">
-          <span className="text-xl">🌿</span>
+          <span className="flex items-center text-[#3ECFB2]"><Leaf size={24} /></span>
           <h1 className="font-nunito font-bold text-[#3ECFB2] text-xl tracking-tight relative">
             NeuroBloom
             
@@ -43,7 +44,7 @@ export default function Sidebar() {
             <div className="text-[#8FA3B1] text-xs">▾</div>
           </div>
           <div className="bg-[#3ECFB2] text-white rounded-2xl px-3 py-1.5 text-xs font-bold shadow-[0_3px_0_#1A9E8C] self-start ml-2 flex items-center gap-1.5">
-            <span>🔥</span> {child.streak} day streak
+            <span className="flex items-center"><Flame size={14} /></span> {child.streak} day streak
           </div>
         </div>
       </div>
@@ -69,7 +70,7 @@ export default function Sidebar() {
       {/* Bottom Section */}
       <div className="p-6 border-t border-white/60">
         <Link href="/dashboard/child" className="font-dm-sans text-sm text-[#1B2D3E] font-bold hover:text-[#3ECFB2] hover:bg-white/80 transition-colors mb-4 block bg-white/50 p-2.5 rounded-xl text-center border border-white/60 shadow-sm flex items-center justify-center gap-2">
-          <span>🎮</span> Child Dashboard
+          <span><Gamepad2 size={16} /></span> Child Dashboard
         </Link>
         <a href="#" className="font-dm-sans text-xs text-[#8FA3B1] hover:text-[#3ECFB2] transition-colors mb-4 block">
           Need help? &rarr;

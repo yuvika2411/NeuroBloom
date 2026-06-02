@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp } from "../../lib/animations";
+import { User, Flame, Smile, Puzzle, Rocket, Star, BarChart3, Calendar, Settings, Pause } from "lucide-react";
 
 export default function AudienceToggle() {
   const [activeTab, setActiveTab] = useState("parents");
@@ -21,10 +22,10 @@ export default function AudienceToggle() {
           <div className="bg-gradient-to-r from-[#3ECFB2] to-[#4A90D9] pt-12 pb-6 px-6 text-white relative">
             <div className="flex justify-between items-center mb-4">
               <div className="font-nunito font-bold text-lg">Leo's Overview</div>
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl">👦</div>
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl"><User size={20} /></div>
             </div>
             <div className="bg-white/20 rounded-2xl p-3 backdrop-blur-sm border border-white/30 flex items-center gap-3">
-              <span className="text-2xl">🔥</span>
+              <span className="text-[#FF7E6B]"><Flame size={24} /></span>
               <div>
                 <div className="text-xs text-white/80 font-bold uppercase tracking-wider">Current Streak</div>
                 <div className="text-xl font-bold">7 Days!</div>
@@ -47,11 +48,11 @@ export default function AudienceToggle() {
 
             <div className="flex gap-3">
               <div className="flex-1 bg-white p-4 rounded-2xl shadow-sm border border-[#E8FAF6] flex flex-col items-center justify-center gap-2">
-                <span className="text-2xl">😊</span>
+                <span className="text-[#FFB020]"><Smile size={24} /></span>
                 <span className="text-xs font-bold text-[#1B2D3E]">Joyful</span>
               </div>
               <div className="flex-1 bg-white p-4 rounded-2xl shadow-sm border border-[#E8FAF6] flex flex-col items-center justify-center gap-2">
-                <span className="text-2xl">🧩</span>
+                <span className="text-[#4A90D9]"><Puzzle size={24} /></span>
                 <span className="text-xs font-bold text-[#1B2D3E]">Pattern</span>
               </div>
             </div>
@@ -59,9 +60,9 @@ export default function AudienceToggle() {
           
           {/* App Bottom Nav */}
           <div className="h-16 bg-white border-t border-[#E8FAF6] flex justify-around items-center px-4">
-            <div className="w-10 h-10 rounded-full bg-[#3ECFB2]/20 text-[#3ECFB2] flex items-center justify-center">📊</div>
-            <div className="w-10 h-10 rounded-full text-[#8FA3B1] flex items-center justify-center">📅</div>
-            <div className="w-10 h-10 rounded-full text-[#8FA3B1] flex items-center justify-center">⚙️</div>
+            <div className="w-10 h-10 rounded-full bg-[#3ECFB2]/20 text-[#3ECFB2] flex items-center justify-center"><BarChart3 size={20} /></div>
+            <div className="w-10 h-10 rounded-full text-[#8FA3B1] flex items-center justify-center"><Calendar size={20} /></div>
+            <div className="w-10 h-10 rounded-full text-[#8FA3B1] flex items-center justify-center"><Settings size={20} /></div>
           </div>
         </div>
       )
@@ -93,19 +94,19 @@ export default function AudienceToggle() {
               animate={{ y: [-10, 10, -10] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
             >
-              🚀
+              <Rocket size={36} className="text-[#1B2D3E]" />
             </motion.div>
 
             {/* Collectibles */}
-            <motion.div className="absolute bottom-24 right-20 text-3xl" animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 4, ease: "linear" }}>⭐</motion.div>
-            <motion.div className="absolute bottom-32 left-24 text-3xl" animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 5, ease: "linear" }}>⭐</motion.div>
+            <motion.div className="absolute bottom-24 right-20 text-3xl" animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 4, ease: "linear" }}><Star size={28} className="text-[#FFB020]" fill="currentColor" /></motion.div>
+            <motion.div className="absolute bottom-32 left-24 text-3xl" animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 5, ease: "linear" }}><Star size={28} className="text-[#FFB020]" fill="currentColor" /></motion.div>
 
             {/* Game UI Overlay */}
             <div className="absolute top-4 left-4 bg-white/30 backdrop-blur-md rounded-full px-4 py-1.5 border border-white/50 text-white font-bold text-sm flex items-center gap-2">
-              <span>⭐</span> 1,240
+              <span className="text-[#FFB020]"><Star size={16} fill="currentColor" /></span> 1,240
             </div>
             <div className="absolute top-4 right-4 w-10 h-10 bg-white/30 backdrop-blur-md rounded-full border border-white/50 flex items-center justify-center text-white">
-              ⏸️
+              <Pause size={20} />
             </div>
           </div>
         </div>

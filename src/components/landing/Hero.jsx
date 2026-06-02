@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
 import Link from "next/link";
+import { Star, User, Puzzle, Brain, Target, Trophy, MessageCircle } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -114,7 +115,7 @@ export default function Hero() {
                 500+ Families
               </span>
               <span className="flex items-center gap-2">
-                <span className="text-[#FFB020] text-lg">⭐</span> 4.9/5 Rating
+                <span className="text-[#FFB020] flex items-center"><Star size={20} fill="currentColor" /></span> 4.9/5 Rating
               </span>
             </motion.div>
           </div>
@@ -149,7 +150,7 @@ export default function Hero() {
                 <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=')] bg-[length:12px_12px]"></div>
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-4xl shadow-lg border-2 border-white/50">
-                    👦
+                    <User size={36} className="text-[#4A90D9]" />
                   </div>
                   <div>
                     <div className="font-nunito font-extrabold text-white text-2xl leading-tight drop-shadow-sm">Leo's Journey</div>
@@ -167,11 +168,11 @@ export default function Hero() {
                      </span>
                    </div>
                    <div className="flex items-center gap-4">
-                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4A90D9]/20 to-[#C4B5FD]/20 flex items-center justify-center text-3xl border border-white shadow-sm">🧩</div>
+                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4A90D9]/20 to-[#C4B5FD]/20 flex items-center justify-center border border-white shadow-sm"><Puzzle size={32} className="text-[#4A90D9]" /></div>
                      <div>
                        <div className="font-bold text-[#1B2D3E] text-lg">Pattern Recognition</div>
                        <div className="text-xs text-[#8FA3B1] font-medium mt-1 flex items-center gap-1">
-                         <span className="text-base">🧠</span> Cognitive & Focus
+                         <span className="flex items-center text-[#4A90D9]"><Brain size={16} /></span> Cognitive & Focus
                        </div>
                      </div>
                    </div>
@@ -204,7 +205,7 @@ export default function Hero() {
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <div className="bg-[#4A90D9]/20 text-[#4A90D9] w-8 h-8 rounded-lg flex items-center justify-center text-lg border border-[#4A90D9]/50 shadow-inner">🎯</div>
+                  <div className="bg-[#4A90D9]/20 text-[#4A90D9] w-8 h-8 rounded-lg flex items-center justify-center border border-[#4A90D9]/50 shadow-inner"><Target size={18} /></div>
                   <div className="font-nunito font-bold text-white text-base">ADHD Mode</div>
                 </div>
                 {/* Toggle switch UI */}
@@ -224,7 +225,7 @@ export default function Hero() {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
               style={{ rotate: "-3deg" }}
             >
-              <div className="text-[#FFB020] text-xl">🏆</div>
+              <div className="text-[#FFB020]"><Trophy size={24} /></div>
               <div className="font-nunito font-bold text-[#1B2D3E] text-sm tracking-wide">Level Up!</div>
             </motion.div>
 
@@ -240,8 +241,8 @@ export default function Hero() {
               }}
               style={{ rotate: "-5deg" }}
             >
-              <div className="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-inner backdrop-blur-sm border border-white/40">
-                🗣️
+              <div className="bg-white/20 w-10 h-10 rounded-full flex items-center justify-center shadow-inner backdrop-blur-sm border border-white/40">
+                <MessageCircle size={24} className="text-white" />
               </div>
               <div>
                 <div className="font-dm-sans text-[10px] uppercase tracking-wider text-white/80 font-bold">

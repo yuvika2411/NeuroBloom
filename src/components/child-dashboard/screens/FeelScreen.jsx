@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
+import { Wind, Flower, Leaf, Heart, Smile, Meh, Frown, Moon } from "lucide-react";
 
 function CalmingScreen({ onClose }) {
   const [phase, setPhase] = useState('inhale');
@@ -39,7 +40,7 @@ function CalmingScreen({ onClose }) {
         }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <span className="text-[64px]">🌬️</span>
+        <Wind size={64} className="text-[#4A90D9]" />
       </motion.div>
 
       <motion.div
@@ -50,12 +51,12 @@ function CalmingScreen({ onClose }) {
         className="h-10 flex items-center justify-center mb-12"
       >
         <p className="font-nunito font-medium text-2xl text-[#1B2D3E]">
-          {phase === 'inhale' ? 'Breathe in... 🌸' : 'Breathe out... 🍃'}
+          {phase === 'inhale' ? <>Breathe in... <Flower size={24} className="inline-block text-[#C4B5FD] ml-2 mb-1" /></> : <>Breathe out... <Leaf size={24} className="inline-block text-[#3ECFB2] ml-2 mb-1" /></>}
         </p>
       </motion.div>
 
       <p className="font-dm-sans text-[16px] text-[#1B2D3E]/70 absolute bottom-12">
-        You're safe. Take your time. 💙
+        You're safe. Take your time. <Heart size={16} className="inline-block text-[#4A90D9] ml-1 mb-0.5" />
       </p>
     </motion.div>
   );
@@ -65,6 +66,14 @@ export default function FeelScreen() {
   const { currentMood, setMood, child } = useChildStore();
   const [showCalm, setShowCalm] = useState(false);
   const [justSelected, setJustSelected] = useState(false);
+
+  const moodIconMap = {
+    '😄': <Smile size={36} className="text-[#FFB020]" />,
+    '😊': <Smile size={36} className="text-[#3ECFB2]" />,
+    '😐': <Meh size={36} className="text-[#4A90D9]" />,
+    '😕': <Frown size={36} className="text-[#FF7E6B]" />,
+    '😢': <Frown size={36} className="text-[#C4B5FD]" />,
+  };
 
   const moods = [
     { id: 'great', emoji: '😄', label: 'Great!', bg: 'bg-[#FFF9C4]', border: 'border-[#FFF59D]', activeBg: 'bg-[#FFF9C4]', screenBg: '#FFF9C4' },
@@ -113,7 +122,7 @@ export default function FeelScreen() {
                 }`}
                 style={isSelected ? { filter: 'drop-shadow(0 0 12px rgba(62,207,178,0.5))' } : {}}
               >
-                <span className="text-[36px] leading-none mb-1">{m.emoji}</span>
+                <div className="mb-1">{moodIconMap[m.emoji] || m.emoji}</div>
                 <span className="font-dm-sans text-[11px] font-bold text-[#1B2D3E] text-center leading-none">
                   {m.label}
                 </span>
@@ -131,7 +140,7 @@ export default function FeelScreen() {
               className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-3 border border-white shadow-sm"
             >
               <p className="font-nunito font-bold text-[20px] text-[#3ECFB2]">
-                Thanks for telling us, {child.name}! 💙
+                Thanks for telling us, {child.name}! <Heart size={20} className="inline-block text-[#3ECFB2] ml-1 mb-1" />
               </p>
             </motion.div>
           )}
@@ -142,7 +151,7 @@ export default function FeelScreen() {
           className="mt-auto mb-4 bg-[#C4B5FD]/20 border-2 border-[#C4B5FD]/50 text-[#1B2D3E] font-nunito font-bold text-[18px] px-8 py-4 rounded-2xl flex items-center justify-center gap-3 active:scale-95 transition-transform w-full max-w-xs shadow-sm backdrop-blur-sm"
         >
           <span>Need a break?</span>
-          <span className="text-2xl">🌙</span>
+          <Moon size={24} />
         </button>
       </motion.div>
     </>

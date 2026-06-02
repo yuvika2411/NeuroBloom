@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { Leaf } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,8 +37,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="font-nunito font-bold text-2xl text-[#3ECFB2]">
-              🌿 NeuroBloom
+            <span className="font-nunito font-bold text-2xl text-[#3ECFB2] flex items-center gap-2">
+              <Leaf size={28} /> NeuroBloom
             </span>
           </div>
 

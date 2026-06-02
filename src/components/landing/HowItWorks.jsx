@@ -2,26 +2,27 @@
 
 import { motion } from "framer-motion";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import { User, Gamepad2, BarChart3 } from "lucide-react";
 
 export default function HowItWorks() {
   const steps = [
     {
       num: "01",
-      icon: "👤",
+      icon: <User size={40} className="text-[#3ECFB2]" />,
       title: "Create a Profile",
       desc: "Answer a few questions about your child. Our AI builds a personalized learning path using ABA frameworks.",
       tilt: "-1deg"
     },
     {
       num: "02",
-      icon: "🎮",
+      icon: <Gamepad2 size={40} className="text-[#4A90D9]" />,
       title: "Play & Learn",
       desc: "Your child engages with daily 10-min gamified modules — adaptive difficulty, zero frustration design.",
       tilt: "1deg"
     },
     {
       num: "03",
-      icon: "📊",
+      icon: <BarChart3 size={40} className="text-[#FFB020]" />,
       title: "Track Progress",
       desc: "You and your therapist get a live dashboard — mood curves, skill milestones, session reports.",
       tilt: "-0.5deg"
@@ -72,7 +73,7 @@ export default function HowItWorks() {
                     {step.num}
                   </div>
                   
-                  <div className="text-5xl mb-6 mt-4">{step.icon}</div>
+                  <div className="mb-6 mt-4">{step.icon}</div>
                   
                   <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-4">
                     {step.title}

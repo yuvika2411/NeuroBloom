@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
+import { Smile, Frown, Meh, Star, Gamepad2, Heart, Brain, PartyPopper, Microscope } from "lucide-react";
 
 const questions = [
-  { face: '😊', prompt: 'How is this person feeling?', options: ['Happy', 'Sad', 'Angry'],   correct: 0 },
-  { face: '😢', prompt: 'What does this face show?',  options: ['Surprised', 'Sad', 'Happy'], correct: 1 },
-  { face: '😠', prompt: 'How is this person feeling?', options: ['Angry', 'Happy', 'Scared'],  correct: 0 },
-  { face: '😮', prompt: 'What does this face show?',  options: ['Sad', 'Happy', 'Surprised'], correct: 2 },
-  { face: '😄', prompt: 'How is this person feeling?', options: ['Angry', 'Excited', 'Tired'],  correct: 1 },
+  { face: <Smile size={120} className="text-[#FFB020]" />, prompt: 'How is this person feeling?', options: ['Happy', 'Sad', 'Angry'],   correct: 0 },
+  { face: <Frown size={120} className="text-[#C4B5FD]" />, prompt: 'What does this face show?',  options: ['Surprised', 'Sad', 'Happy'], correct: 1 },
+  { face: <Frown size={120} className="text-[#FF7E6B]" />, prompt: 'How is this person feeling?', options: ['Angry', 'Happy', 'Scared'],  correct: 0 },
+  { face: <Meh size={120} className="text-[#4A90D9]" />, prompt: 'What does this face show?',  options: ['Sad', 'Happy', 'Surprised'], correct: 2 },
+  { face: <Smile size={120} className="text-[#3ECFB2]" />, prompt: 'How is this person feeling?', options: ['Angry', 'Excited', 'Tired'],  correct: 1 },
 ];
 
 export default function EmotionMatchGame() {
@@ -67,7 +68,7 @@ export default function EmotionMatchGame() {
           animate={{ scale: 1, y: 0, transition: { type: "spring", bounce: 0.6 } }}
           className="text-[80px] mb-4"
         >
-          🎉
+          <PartyPopper size={80} className="text-[#FF7E6B]" />
         </motion.div>
         <h1 className="font-nunito font-bold text-[32px] text-[#1B2D3E] mb-2">You finished!</h1>
         <p className="font-sora font-bold text-[24px] text-[#3ECFB2] mb-8">
@@ -83,7 +84,7 @@ export default function EmotionMatchGame() {
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.5 + i * 0.2, type: "spring" }}
             >
-              ⭐
+              <Star size={36} fill="currentColor" className="text-[#FFB020]" />
             </motion.span>
           ))}
         </div>
@@ -93,7 +94,7 @@ export default function EmotionMatchGame() {
             onClick={handlePlayAgain}
             className="w-full min-h-[64px] bg-[#3ECFB2] text-white rounded-2xl font-nunito font-bold text-[20px] shadow-[0_6px_0_#1A9E8C] active:translate-y-1.5 active:shadow-none transition-all"
           >
-            Play Again 🎮
+            <span className="flex items-center justify-center gap-2">Play Again <Gamepad2 size={24} /></span>
           </button>
           <button 
             onClick={() => setActiveGame(null)}
@@ -124,7 +125,7 @@ export default function EmotionMatchGame() {
         className="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-white/70 backdrop-blur-md rounded-full flex items-center justify-center text-2xl shadow-sm border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50"
         title="For Parents: Science behind this game"
       >
-        🔬
+        <Microscope size={24} className="text-[#1B2D3E]" />
       </button>
 
       {/* Progress Dots */}
@@ -185,7 +186,7 @@ export default function EmotionMatchGame() {
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
                     className="absolute -bottom-6 left-0 right-0 text-center font-dm-sans text-[14px] text-[#8FA3B1] font-bold"
                   >
-                    Try again 💙
+                    Try again <Heart size={14} className="inline-block text-[#4A90D9] ml-1" />
                   </motion.div>
                 )}
                 
@@ -220,7 +221,7 @@ export default function EmotionMatchGame() {
             exit={{ opacity: 0, scale: 0.8 }}
             className="fixed top-24 left-1/2 bg-[#3ECFB2] text-white px-8 py-4 rounded-2xl shadow-xl font-nunito font-bold text-[20px] flex items-center gap-2 z-[60]"
           >
-            <span className="text-2xl">⭐</span> Great job!
+            <Star size={24} fill="currentColor" /> Great job!
           </motion.div>
         )}
       </AnimatePresence>
@@ -246,7 +247,7 @@ export default function EmotionMatchGame() {
               >
                 ✕
               </button>
-              <div className="text-4xl mb-4">🧠</div>
+              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
               <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
                 Backed by Science
               </h3>

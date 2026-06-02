@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useParentStore } from "../../stores/useParentStore";
 import { staggerContainer, fadeUp } from "../../lib/animations";
+import { Gamepad2, Flame, Puzzle, Smile } from "lucide-react";
 
 function useCountUp(target, duration = 1.2) {
   const [count, setCount] = useState(0);
@@ -46,7 +47,7 @@ function StatCard({ stat }) {
     >
       <div className="flex items-center gap-4 mb-4">
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${stat.iconBg}`}>
-          {stat.emoji}
+          {stat.icon}
         </div>
         <div className="font-dm-sans text-[13px] text-[#8FA3B1] font-medium leading-tight">
           {stat.label}
@@ -71,7 +72,7 @@ export default function StatsRow() {
 
   const statCards = [
     {
-      emoji: "🎮",
+      icon: <Gamepad2 size={28} />,
       iconBg: "bg-[#3ECFB2]/20",
       value: stats.todayMinutes,
       suffix: " min",
@@ -80,7 +81,7 @@ export default function StatsRow() {
       subLabelColor: "text-[#3ECFB2]"
     },
     {
-      emoji: "🔥",
+      icon: <Flame size={28} />,
       iconBg: "bg-[#FF7E6B]/20",
       value: stats.weeklyStreak,
       suffix: " days",
@@ -89,7 +90,7 @@ export default function StatsRow() {
       subLabelColor: "text-[#FF7E6B]"
     },
     {
-      emoji: "🧩",
+      icon: <Puzzle size={28} />,
       iconBg: "bg-[#4A90D9]/20",
       value: stats.totalModules,
       suffix: "",
@@ -98,7 +99,7 @@ export default function StatsRow() {
       subLabelColor: "text-[#8FA3B1]"
     },
     {
-      emoji: "😊",
+      icon: <Smile size={28} />,
       iconBg: "bg-[#C4B5FD]/30",
       value: stats.avgMoodScore, // 4.2
       suffix: "/5",
