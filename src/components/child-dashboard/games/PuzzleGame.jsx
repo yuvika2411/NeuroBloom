@@ -1,34 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
+import FaceEmotionTracker from "../../ai/FaceEmotionTracker";
 import confetti from "canvas-confetti";
-import { Star, Moon, Sun, Flower, Bug, Leaf, Gift, Heart, Music, Puzzle, Brain, Microscope } from "lucide-react";
+import { Star, Moon, Sun, Flower, Bug, Leaf, Gift, Heart, Puzzle, Brain, Microscope, HelpCircle, Music } from "lucide-react";
 
 export default function PuzzleGame() {
-  const { setActiveGame, completeModule } = useChildStore();
+  const { setActiveGame, completeModule, recordQuestionTelemetry } = useChildStore();
   
-  // Visual matching: Match the bright shape to its silhouette
   const levels = [
-    { target: <Star size={100} fill="currentColor" className="text-[#FFB020]" />, options: [<Star size={64} fill="currentColor" className="text-[#FFB020]" />, <Moon size={64} fill="currentColor" className="text-[#C4B5FD]" />, <Sun size={64} fill="currentColor" className="text-[#FF7E6B]" />], correct: 0 },
-    { target: <Flower size={100} className="text-[#4A90D9]" />, options: [<Bug size={64} className="text-[#FF7E6B]" />, <Flower size={64} className="text-[#4A90D9]" />, <Leaf size={64} className="text-[#3ECFB2]" />], correct: 1 },
-    { target: <Gift size={100} className="text-[#FFB020]" />, options: [<Gift size={64} className="text-[#FFB020]" />, <Heart size={64} className="text-[#FF7E6B]" />, <Music size={64} className="text-[#4A90D9]" />], correct: 0 }
+    { target: <Star size={100} fill="currentColor" className="text-[#FFB020]" />, options: [<Star size={64} fill="currentColor" className="text-[#FFB020]" />, <Moon size={64} fill="currentColor" className="text-[#C4B5FD]" />, <Sun size={64} fill="currentColor" className="text-[#FF7E6B]" />], correct: 0, hint: "Match the bright 5-pointed star!" },
+    { target: <Flower size={100} className="text-[#4A90D9]" />, options: [<Bug size={64} className="text-[#FF7E6B]" />, <Flower size={64} className="text-[#4A90D9]" />, <Leaf size={64} className="text-[#3ECFB2]" />], correct: 1, hint: "Match the blooming blue flower!" },
+    { target: <Gift size={100} className="text-[#FFB020]" />, options: [<Gift size={64} className="text-[#FFB020]" />, <Heart size={64} className="text-[#FF7E6B]" />, <Music size={64} className="text-[#4A90D9]" />], correct: 0, hint: "Match the gift box with a bow!" }
   ];
 
   const [currentLevel, setCurrentLevel] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [usedPrompt, setUsedPrompt] = useState(false);
+  const [showHint, setShowHint] = useState(false);
   
+  const questionStartTime = useRef(Date.now());
+  const currentEmotionRef = useRef("Focused");
   const level = levels[currentLevel];
 
+  useEffect(() => {
+    questionStartTime.current = Date.now();
+    setUsedPrompt(false);
+    setShowHint(false);
+  }, [currentLevel]);
+
   const handleSelect = (idx) => {
-    if (idx === level.correct) {
+    const solveTimeMs = Date.now() - questionStartTime.current;
+    const isCorrect = idx === level.correct;
+
+    recordQuestionTelemetry({
+      gameId: 'PuzzleGame',
+      questionIndex: currentLevel,
+      questionText: `Pattern Match Level ${currentLevel + 1}`,
+      solveTimeMs,
+      isCorrect,
+      usedPrompt,
+      emotion: currentEmotionRef.current
+    });
+
+    if (isCorrect) {
       setFeedback("correct");
       if (currentLevel === levels.length - 1) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         setTimeout(() => {
-          completeModule('m3'); // Complete puzzle match
+          completeModule('m3');
           setActiveGame(null);
         }, 2000);
       } else {
@@ -44,26 +67,34 @@ export default function PuzzleGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full bg-white/40 px-4 z-50 fixed inset-0">
-      <button 
-        onClick={() => setActiveGame(null)}
-        className="absolute top-6 left-6 md:top-8 md:left-8 min-w-[56px] min-h-[56px] bg-white/80 backdrop-blur-md rounded-2xl flex items-center justify-center font-nunito font-bold text-[#1B2D3E] shadow-sm border border-white hover:bg-white transition-colors"
-      >
-        ← Back
-      </button>
+    <div className="flex flex-col items-center justify-center h-full bg-[#F5F3FF] px-4 z-50 fixed inset-0 overflow-y-auto">
+      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
+        <button 
+          onClick={() => setActiveGame(null)}
+          className="min-w-[50px] min-h-[44px] px-4 bg-white/80 backdrop-blur-md rounded-2xl flex items-center justify-center font-nunito font-bold text-[#1B2D3E] shadow-sm border border-white hover:bg-white transition-colors"
+        >
+          ← Back
+        </button>
 
-      {/* Parent Info Button */}
+        <FaceEmotionTracker 
+          compact={true} 
+          onEmotionUpdate={(res) => {
+            currentEmotionRef.current = res.emotion;
+          }} 
+        />
+      </div>
+
       <button 
         onClick={() => setShowInfo(true)}
-        className="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-white/70 backdrop-blur-md rounded-full flex items-center justify-center text-2xl shadow-sm border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50"
-        title="For Parents: Science behind this game"
+        className="fixed bottom-6 right-6 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-md border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50 text-[#1B2D3E]"
+        title="Science behind this game"
       >
-        <Microscope size={24} className="text-[#1B2D3E]" />
+        <Microscope size={22} />
       </button>
 
-      <div className="max-w-md w-full flex flex-col items-center">
-        <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] mb-8 text-center">
-          Find the match! <Puzzle size={28} className="inline-block text-[#C4B5FD] ml-2 pb-1" />
+      <div className="max-w-md w-full flex flex-col items-center pt-16">
+        <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] mb-4 text-center">
+          Find the matching shape!
         </h2>
 
         {/* Silhouette / Target */}
@@ -71,12 +102,28 @@ export default function PuzzleGame() {
           key={`target-${currentLevel}`}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-32 h-32 md:w-40 md:h-40 bg-white/50 rounded-3xl shadow-sm border-2 border-white/60 flex items-center justify-center text-6xl md:text-8xl mb-12 brightness-0 opacity-20"
+          className="w-32 h-32 bg-white/60 rounded-3xl shadow-sm border-2 border-white flex items-center justify-center text-6xl my-4 brightness-0 opacity-20"
         >
           {level.target}
         </motion.div>
 
-        <div className="flex justify-center gap-4 md:gap-6 w-full">
+        {/* Prompt Hint */}
+        <div className="mb-6">
+          {!showHint ? (
+            <button
+              onClick={() => { setUsedPrompt(true); setShowHint(true); }}
+              className="px-3.5 py-1.5 bg-purple-100/80 text-purple-800 border border-purple-300 rounded-full font-nunito font-bold text-xs flex items-center gap-1.5 hover:bg-purple-200 transition-colors shadow-xs"
+            >
+              <HelpCircle size={14} /> Need a Hint? (Prompt Assist)
+            </button>
+          ) : (
+            <div className="bg-purple-50 text-purple-900 border border-purple-300 px-4 py-2 rounded-xl text-xs font-dm-sans font-bold">
+              💡 Hint: {level.hint}
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-center gap-4 w-full">
           {level.options.map((option, idx) => (
             <motion.button
               key={idx}
@@ -84,7 +131,7 @@ export default function PuzzleGame() {
               whileTap={{ scale: 0.95 }}
               onClick={() => handleSelect(idx)}
               disabled={feedback !== null}
-              className={`w-24 h-24 md:w-32 md:h-32 rounded-3xl flex items-center justify-center text-5xl md:text-6xl border-2 transition-all ${
+              className={`w-24 h-24 rounded-3xl flex items-center justify-center text-5xl border-2 transition-all ${
                 feedback === "correct" && idx === level.correct ? "bg-[#3ECFB2]/20 border-[#3ECFB2] shadow-md" :
                 feedback === "wrong" && idx !== level.correct ? "bg-gray-100 border-gray-200 opacity-40 scale-95" :
                 "bg-white border-white/60 shadow-sm hover:border-[#3ECFB2]/50 hover:bg-white/90"
@@ -94,75 +141,7 @@ export default function PuzzleGame() {
             </motion.button>
           ))}
         </div>
-
-        <div className="h-12 mt-8 flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            {feedback === "wrong" && (
-              <motion.div
-                key="wrong"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="text-[#8FA3B1] font-dm-sans font-bold md:text-lg"
-              >
-                Try again <Heart size={18} className="inline-block text-[#4A90D9] ml-1 mb-1" />
-              </motion.div>
-            )}
-            {feedback === "correct" && (
-              <motion.div
-                key="correct"
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-[#1A9E8C] font-dm-sans font-bold text-xl md:text-2xl"
-              >
-                Perfect match! <Star size={24} className="inline-block text-[#FFB020] ml-2 pb-1" fill="currentColor" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </div>
-
-      {/* Science / Research Modal */}
-      <AnimatePresence>
-        {showInfo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#1B2D3E]/40 backdrop-blur-sm"
-              onClick={() => setShowInfo(false)}
-            />
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full relative z-10 shadow-2xl border-4 border-[#3ECFB2]/20"
-            >
-              <button 
-                onClick={() => setShowInfo(false)}
-                className="absolute top-4 right-4 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-200 font-bold"
-              >
-                ✕
-              </button>
-              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
-              <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
-                Backed by Science
-              </h3>
-              <p className="font-dm-sans text-[#56728A] leading-relaxed mb-6">
-                This module uses <strong>Visual Pattern Matching</strong>. Research indicates that individuals with autism often demonstrate superior performance in perceiving local details and extracting visual patterns. This game leverages that distinct cognitive profile to build confidence and working memory.
-              </p>
-              <a 
-                href="https://pubmed.ncbi.nlm.nih.gov/?term=autism+visual-spatial+pattern+matching" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#E8FAF6] text-[#1A9E8C] px-5 py-3 rounded-xl font-bold font-dm-sans border border-[#3ECFB2]/30 hover:bg-[#3ECFB2]/20 transition-colors w-full md:w-auto"
-              >
-                Read NIH Research Papers ↗
-              </a>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

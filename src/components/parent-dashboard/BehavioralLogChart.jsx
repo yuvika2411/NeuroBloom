@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 export default function BehavioralLogChart() {
-  const { behavioralData, child } = useParentStore();
+  const { behavioralData = [], child = {} } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

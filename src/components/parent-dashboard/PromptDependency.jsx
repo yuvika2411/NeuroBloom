@@ -6,7 +6,7 @@ import { staggerContainer } from "../../lib/animations";
 import { PartyPopper } from "lucide-react";
 
 export default function PromptDependency() {
-  const { promptDependency, child } = useParentStore();
+  const { promptDependency = [], child = {} } = useParentStore();
 
   // Find the latest week's independent percentage
   const latestInd = promptDependency[promptDependency.length - 1]?.independent || 0;

@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 export default function CategoryTimeChart() {
-  const { categoryTimeData, child } = useParentStore();
+  const { categoryTimeData = [], child = {} } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

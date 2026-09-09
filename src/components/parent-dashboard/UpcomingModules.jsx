@@ -6,7 +6,7 @@ import { staggerContainer, fadeUp, clayHover } from "../../lib/animations";
 import { Star, Palette, Type, Puzzle, Gamepad2 } from "lucide-react";
 
 export default function UpcomingModules() {
-  const { upcomingModules } = useParentStore();
+  const { upcomingModules = [] } = useParentStore();
 
   const moduleIconMap = {
     '🎭': <Palette size={32} className="text-[#4A90D9]" />,

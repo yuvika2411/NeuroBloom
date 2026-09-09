@@ -1,40 +1,76 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
+import FaceEmotionTracker from "../../ai/FaceEmotionTracker";
 import confetti from "canvas-confetti";
-import { Apple, Cat, Car, HelpCircle, Heart, Star, Brain, Microscope } from "lucide-react";
+import { Apple, Cat, Car, HelpCircle, Heart, Star, Brain, Microscope, Volume2, Sparkles } from "lucide-react";
 
 export default function WordMatchGame() {
-  const { setActiveGame, completeModule } = useChildStore();
+  const { setActiveGame, completeModule, recordQuestionTelemetry } = useChildStore();
   
   const levels = [
-    { icon: <Apple size={100} className="text-[#FF7E6B]" />, options: ["Apple", "Banana", "Dog"], correct: "Apple" },
-    { icon: <Cat size={100} className="text-[#FFB020]" />, options: ["Bird", "Cat", "Cow"], correct: "Cat" },
-    { icon: <Car size={100} className="text-[#4A90D9]" />, options: ["Car", "Bus", "Train"], correct: "Car" }
+    { icon: <Apple size={100} className="text-[#FF7E6B]" />, options: ["Apple", "Banana", "Dog"], correct: "Apple", hint: "A delicious red fruit!" },
+    { icon: <Cat size={100} className="text-[#FFB020]" />, options: ["Bird", "Cat", "Cow"], correct: "Cat", hint: "A soft pet that says Meow!" },
+    { icon: <Car size={100} className="text-[#4A90D9]" />, options: ["Car", "Bus", "Train"], correct: "Car", hint: "A vehicle with 4 wheels!" }
   ];
 
   const [currentLevel, setCurrentLevel] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
-  
+  const [usedPrompt, setUsedPrompt] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+
+  const questionStartTime = useRef(Date.now());
+  const currentEmotionRef = useRef("Focused");
   const level = levels[currentLevel];
 
+  useEffect(() => {
+    questionStartTime.current = Date.now();
+    setUsedPrompt(false);
+    setShowHint(false);
+    speakWord(level.correct);
+  }, [currentLevel]);
+
+  const speakWord = (text) => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   const handleSelect = (option) => {
-    if (option === level.correct) {
+    const solveTimeMs = Date.now() - questionStartTime.current;
+    const isCorrect = option === level.correct;
+
+    speakWord(option);
+
+    recordQuestionTelemetry({
+      gameId: 'WordMatchGame',
+      questionIndex: currentLevel,
+      questionText: `AAC Match: ${level.correct}`,
+      solveTimeMs,
+      isCorrect,
+      usedPrompt,
+      emotion: currentEmotionRef.current
+    });
+
+    if (isCorrect) {
       setFeedback("correct");
       if (currentLevel === levels.length - 1) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         setTimeout(() => {
-          completeModule('m2'); // Complete word match module
+          completeModule('m2');
           setActiveGame(null);
         }, 2000);
       } else {
         setTimeout(() => {
           setCurrentLevel(prev => prev + 1);
           setFeedback(null);
-        }, 1200);
+        }, 1400);
       }
     } else {
       setFeedback("wrong");
@@ -43,38 +79,75 @@ export default function WordMatchGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full bg-white/40 px-4 z-50 fixed inset-0">
-      <button 
-        onClick={() => setActiveGame(null)}
-        className="absolute top-6 left-6 md:top-8 md:left-8 min-w-[56px] min-h-[56px] bg-white/80 backdrop-blur-md rounded-2xl flex items-center justify-center font-nunito font-bold text-[#1B2D3E] shadow-sm border border-white hover:bg-white transition-colors"
-      >
-        ← Back
-      </button>
+    <div className="flex flex-col items-center justify-center h-full bg-[#F0F9FF] px-4 z-50 fixed inset-0 overflow-y-auto">
+      {/* Top Header Bar */}
+      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
+        <button 
+          onClick={() => setActiveGame(null)}
+          className="min-w-[50px] min-h-[44px] px-4 bg-white/80 backdrop-blur-md rounded-2xl flex items-center justify-center font-nunito font-bold text-[#1B2D3E] shadow-sm border border-white hover:bg-white transition-colors"
+        >
+          ← Back
+        </button>
 
-      {/* Parent Info Button */}
+        <FaceEmotionTracker 
+          compact={true} 
+          onEmotionUpdate={(res) => {
+            currentEmotionRef.current = res.emotion;
+          }} 
+        />
+      </div>
+
+      {/* Science Info Button */}
       <button 
         onClick={() => setShowInfo(true)}
-        className="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-white/70 backdrop-blur-md rounded-full flex items-center justify-center text-2xl shadow-sm border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50"
-        title="For Parents: Science behind this game"
+        className="fixed bottom-6 right-6 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center shadow-md border border-[#3ECFB2]/30 hover:bg-white transition-colors z-50 text-[#1B2D3E]"
+        title="Science behind this PECS AAC game"
       >
-        <Microscope size={24} className="text-[#1B2D3E]" />
+        <Microscope size={22} />
       </button>
 
-      <div className="max-w-md w-full flex flex-col items-center">
-        <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] mb-8 text-center">
-          What is this? <HelpCircle size={28} className="inline-block text-[#4A90D9] ml-2 pb-1" />
-        </h2>
+      <div className="max-w-md w-full flex flex-col items-center pt-16">
+        <div className="flex items-center gap-2 mb-2">
+          <h2 className="font-nunito font-bold text-2xl md:text-3xl text-[#1B2D3E] text-center">
+            Match the Symbol
+          </h2>
+          <button 
+            onClick={() => speakWord(level.correct)} 
+            className="p-2 rounded-full bg-cyan-100 text-cyan-700 hover:bg-cyan-200 transition-colors"
+            title="Listen to pronunciation"
+          >
+            <Volume2 size={20} />
+          </button>
+        </div>
 
+        {/* Symbol Display */}
         <motion.div 
           key={currentLevel}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-3xl shadow-sm border-2 border-[#3ECFB2]/20 flex items-center justify-center text-6xl md:text-8xl mb-12"
+          className="w-36 h-36 bg-white rounded-3xl shadow-md border-2 border-[#3ECFB2]/30 flex items-center justify-center text-7xl my-6"
         >
           {level.icon}
         </motion.div>
 
-        <div className="w-full space-y-4">
+        {/* ABA Prompt Hint Toggle */}
+        <div className="mb-6">
+          {!showHint ? (
+            <button
+              onClick={() => { setUsedPrompt(true); setShowHint(true); }}
+              className="px-3.5 py-1.5 bg-amber-100/80 text-amber-800 border border-amber-300 rounded-full font-nunito font-bold text-xs flex items-center gap-1.5 hover:bg-amber-200 transition-colors shadow-xs"
+            >
+              <HelpCircle size={14} /> Need a Hint? (Prompt Assist)
+            </button>
+          ) : (
+            <div className="bg-amber-50 text-amber-900 border border-amber-300 px-4 py-2 rounded-xl text-xs font-dm-sans font-bold">
+              💡 Hint: {level.hint}
+            </div>
+          )}
+        </div>
+
+        {/* AAC Word Options */}
+        <div className="w-full space-y-3">
           {level.options.map((option, idx) => (
             <motion.button
               key={idx}
@@ -82,81 +155,47 @@ export default function WordMatchGame() {
               whileTap={{ scale: 0.98 }}
               onClick={() => handleSelect(option)}
               disabled={feedback !== null}
-              className={`w-full py-4 md:py-5 rounded-2xl font-nunito font-bold text-xl md:text-2xl border-2 transition-colors ${
+              className={`w-full py-4 rounded-2xl font-nunito font-bold text-xl border-2 transition-colors flex items-center justify-center gap-2 ${
                 feedback === "correct" && option === level.correct ? "bg-[#3ECFB2]/20 border-[#3ECFB2] text-[#1A9E8C]" :
                 feedback === "wrong" && option !== level.correct ? "bg-gray-100 border-gray-200 text-gray-400" :
                 "bg-white border-white/60 shadow-sm text-[#1B2D3E] hover:border-[#3ECFB2]/50 hover:bg-white/90"
               }`}
             >
-              {option}
+              <span>{option}</span>
+              <Volume2 size={16} className="text-slate-400" />
             </motion.button>
           ))}
         </div>
-
-        <div className="h-12 mt-6 flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            {feedback === "wrong" && (
-              <motion.div
-                key="wrong"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="text-[#8FA3B1] font-dm-sans font-bold md:text-lg"
-              >
-                Try again <Heart size={18} className="inline-block text-[#4A90D9] ml-1 mb-1" />
-              </motion.div>
-            )}
-            {feedback === "correct" && (
-              <motion.div
-                key="correct"
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-[#1A9E8C] font-dm-sans font-bold text-xl md:text-2xl"
-              >
-                Great job! <Star size={24} className="inline-block text-[#FFB020] ml-2 pb-1" fill="currentColor" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </div>
 
-      {/* Science / Research Modal */}
+      {/* Science Modal */}
       <AnimatePresence>
         {showInfo && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#1B2D3E]/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-[#1B2D3E]/40 backdrop-blur-xs"
               onClick={() => setShowInfo(false)}
             />
             <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full relative z-10 shadow-2xl border-4 border-[#3ECFB2]/20"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-3xl p-6 max-w-lg w-full relative z-10 shadow-2xl border-4 border-[#3ECFB2]/20 space-y-4"
             >
               <button 
                 onClick={() => setShowInfo(false)}
-                className="absolute top-4 right-4 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-200 font-bold"
+                className="absolute top-4 right-4 w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 font-bold"
               >
                 ✕
               </button>
-              <div className="mb-4 text-[#4A90D9]"><Brain size={40} /></div>
-              <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E] mb-2">
-                Backed by Science
+              <div className="text-[#4A90D9]"><Brain size={36} /></div>
+              <h3 className="font-nunito font-bold text-2xl text-[#1B2D3E]">
+                Backed by PECS & AAC Speech Research
               </h3>
-              <p className="font-dm-sans text-[#56728A] leading-relaxed mb-6">
-                This module uses <strong>Picture-to-Word Mapping</strong>. Clinical research indicates that combining visual supports (imageability) with textual pairing is a highly effective strategy for vocabulary acquisition and reading comprehension in individuals with autism.
+              <p className="font-dm-sans text-sm text-[#56728A] leading-relaxed">
+                Picture Exchange Communication System (PECS) combined with natural speech synthesis significantly accelerates functional vocabulary acquisition and unprompted expressive communication in non-verbal and verbal autistic individuals.
               </p>
-              <a 
-                href="https://pubmed.ncbi.nlm.nih.gov/?term=visual+supports+vocabulary+autism" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-[#E8FAF6] text-[#1A9E8C] px-5 py-3 rounded-xl font-bold font-dm-sans border border-[#3ECFB2]/30 hover:bg-[#3ECFB2]/20 transition-colors w-full md:w-auto"
-              >
-                Read NIH Research Papers ↗
-              </a>
             </motion.div>
           </div>
         )}

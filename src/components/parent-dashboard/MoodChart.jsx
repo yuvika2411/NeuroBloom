@@ -42,7 +42,7 @@ const CustomizedDot = (props) => {
 };
 
 export default function MoodChart() {
-  const { weeklyMoodData, child } = useParentStore();
+  const { weeklyMoodData = [], child = {} } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

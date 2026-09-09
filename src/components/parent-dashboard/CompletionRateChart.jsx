@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 export default function CompletionRateChart() {
-  const { completionData } = useParentStore();
+  const { completionData = [] } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

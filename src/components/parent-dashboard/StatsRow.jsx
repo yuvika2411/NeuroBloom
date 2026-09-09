@@ -68,7 +68,7 @@ function StatCard({ stat }) {
 }
 
 export default function StatsRow() {
-  const { stats } = useParentStore();
+  const { stats = {} } = useParentStore();
 
   const statCards = [
     {

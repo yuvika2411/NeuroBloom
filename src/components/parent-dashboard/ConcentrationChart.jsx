@@ -20,7 +20,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function ConcentrationChart() {
-  const { concentrationData, child } = useParentStore();
+  const { concentrationData = [], child = {} } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

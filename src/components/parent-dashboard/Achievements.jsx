@@ -5,7 +5,7 @@ import { useParentStore } from "../../stores/useParentStore";
 import { Trophy, Flame, Puzzle, Smile, MessageCircle, Star, Palette, Lock } from "lucide-react";
 
 export default function Achievements() {
-  const { achievements, child } = useParentStore();
+  const { achievements = [], child = {} } = useParentStore();
 
   const badgeIconMap = {
     '🔥': <Flame size={32} className="text-[#FF7E6B]" />,

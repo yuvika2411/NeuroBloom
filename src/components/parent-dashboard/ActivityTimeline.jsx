@@ -6,7 +6,7 @@ import { staggerContainer, fadeUp } from "../../lib/animations";
 import { Star, Palette, MessageCircle, Puzzle, Gamepad2, Smile, Meh } from "lucide-react";
 
 export default function ActivityTimeline() {
-  const { sessionTimeline, child } = useParentStore();
+  const { sessionTimeline = [], child = {} } = useParentStore();
 
   const iconMap = {
     '🎭': <Palette size={20} className="text-[#4A90D9]" />,

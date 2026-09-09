@@ -99,8 +99,11 @@ export default function SettingsPanel() {
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     if (file) {
-                      const url = URL.createObjectURL(file);
-                      setDisplaySettings({ customBackgroundImage: url });
+                      const reader = new FileReader();
+                      reader.onload = (event) => {
+                        setDisplaySettings({ customBackgroundImage: event.target.result });
+                      };
+                      reader.readAsDataURL(file);
                     }
                   }}
                 />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
 import { Wind, Flower, Leaf, Heart, Smile, Meh, Frown, Moon } from "lucide-react";
@@ -8,9 +8,7 @@ import { Wind, Flower, Leaf, Heart, Smile, Meh, Frown, Moon } from "lucide-react
 function CalmingScreen({ onClose }) {
   const [phase, setPhase] = useState('inhale');
 
-  // We could use an interval for the text, but framer motion's onUpdate or a simple useEffect works too.
-  // We'll just use a simple interval for the text to keep it perfectly in sync with the 4s CSS animation (2s each phase).
-  useState(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setPhase(p => p === 'inhale' ? 'exhale' : 'inhale');
     }, 2000);

@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import TopStrip from "./TopStrip";
-import { Sparkles, Star } from "lucide-react";
+import { Sparkles, Star, Heart } from "lucide-react";
 import BottomNav from "./BottomNav";
 import { useChildStore } from "../../stores/useChildStore";
 
@@ -39,7 +39,7 @@ const themeConfigs = {
 };
 
 export default function ChildLayout({ children }) {
-  const { displaySettings } = useChildStore();
+  const { displaySettings, activeCheer, clearCheer } = useChildStore();
   const currentTheme = themeConfigs[displaySettings.theme] || themeConfigs.default;
 
   const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
@@ -76,7 +76,6 @@ export default function ChildLayout({ children }) {
       
       {/* Interactive Grid & Spotlight */}
       <div className="fixed inset-0 pointer-events-none z-[-20]">
-        {/* Subtle Base Grid */}
         <div 
           className="absolute inset-0 transition-all duration-1000"
           style={{
@@ -86,7 +85,6 @@ export default function ChildLayout({ children }) {
           }}
         />
         
-        {/* Spotlight Glow Grid - Follows Mouse */}
         <div 
           className="absolute inset-0 transition-colors duration-1000"
           style={{
@@ -96,7 +94,6 @@ export default function ChildLayout({ children }) {
           }}
         />
 
-        {/* Soft Ambient Light - Follows Mouse */}
         <div 
           className="absolute inset-0 transition-colors duration-1000"
           style={{
@@ -132,6 +129,30 @@ export default function ChildLayout({ children }) {
           </motion.div>
         ))}
       </div>
+
+      {/* Real-time Parent Cheer Notification Toast */}
+      <AnimatePresence>
+        {activeCheer && (
+          <motion.div
+            initial={{ y: -80, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: -80, opacity: 0, scale: 0.8 }}
+            className="fixed top-20 left-1/2 transform -translate-x-1/2 z-[100] bg-gradient-to-r from-amber-400 via-emerald-400 to-teal-400 text-slate-900 px-6 py-3.5 rounded-full shadow-2xl border-2 border-white flex items-center gap-3 cursor-pointer"
+            onClick={clearCheer}
+          >
+            <span className="text-2xl animate-bounce">{activeCheer.emoji || "⭐"}</span>
+            <div>
+              <p className="font-nunito font-bold text-sm leading-tight text-slate-900">
+                Cheer from {activeCheer.sender || "Mom"}!
+              </p>
+              <p className="font-dm-sans font-bold text-xs text-slate-800">
+                "{activeCheer.text || "You are doing amazing!"}"
+              </p>
+            </div>
+            <Heart size={20} className="text-rose-600 fill-rose-500 animate-pulse ml-1" />
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       <TopStrip />
       

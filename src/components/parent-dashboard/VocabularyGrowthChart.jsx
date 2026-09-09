@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function VocabularyGrowthChart() {
-  const { vocabularyData, child } = useParentStore();
+  const { vocabularyData = [], child = {} } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

@@ -20,7 +20,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function SleepMoodChart() {
-  const { sleepMoodData } = useParentStore();
+  const { sleepMoodData = [] } = useParentStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

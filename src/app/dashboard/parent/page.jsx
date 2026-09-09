@@ -18,6 +18,8 @@ import VocabularyGrowthChart from "../../../components/parent-dashboard/Vocabula
 import CompletionRateChart from "../../../components/parent-dashboard/CompletionRateChart";
 import SleepMoodChart from "../../../components/parent-dashboard/SleepMoodChart";
 import ClinicalReports from "../../../components/parent-dashboard/ClinicalReports";
+import LiveMonitor from "../../../components/parent-dashboard/LiveMonitor";
+import QuestionTelemetryTable from "../../../components/parent-dashboard/QuestionTelemetryTable";
 import { useParentStore } from "../../../stores/useParentStore";
 
 export default function ParentDashboardPage() {
@@ -25,16 +27,24 @@ export default function ParentDashboardPage() {
 
   const renderContent = () => {
     switch (activeTab) {
+      case "live":
+        return (
+          <div className="space-y-6 pb-12">
+            <LiveMonitor />
+            <QuestionTelemetryTable />
+          </div>
+        );
       case "overview":
         return (
           <>
+            <LiveMonitor />
             <StatsRow />
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              <div className="lg:col-span-7">
                 <ActivityTimeline />
               </div>
-              <div>
-                <TherapistNotes />
+              <div className="lg:col-span-5">
+                <TherapistNotes showChat={false} />
               </div>
             </div>
             
@@ -42,6 +52,8 @@ export default function ParentDashboardPage() {
               <MoodChart />
               <ConcentrationChart />
             </div>
+
+            <QuestionTelemetryTable />
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
               <CategoryTimeChart />
@@ -71,6 +83,7 @@ export default function ParentDashboardPage() {
             </div>
             <SkillBars />
             <PromptDependency />
+            <QuestionTelemetryTable />
             <Achievements />
           </div>
         );
@@ -91,16 +104,14 @@ export default function ParentDashboardPage() {
       case "sessions":
         return (
           <div className="space-y-6 pb-12">
+            <LiveMonitor />
             <ActivityTimeline />
+            <QuestionTelemetryTable />
             <UpcomingModules />
           </div>
         );
       case "notes":
-        return (
-          <div className="space-y-6 pb-12 max-w-2xl">
-            <TherapistNotes />
-          </div>
-        );
+        return <TherapistNotes showChat={true} />;
       case "reports":
         return (
           <div className="space-y-6 pb-12 max-w-4xl mx-auto">

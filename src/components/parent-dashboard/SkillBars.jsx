@@ -5,7 +5,7 @@ import { useParentStore } from "../../stores/useParentStore";
 import { staggerContainer } from "../../lib/animations";
 
 export default function SkillBars() {
-  const { skillProgress, stats } = useParentStore();
+  const { skillProgress = [], stats = {} } = useParentStore();
 
   return (
     <div className="bg-white/55 backdrop-blur-lg border border-white/60 rounded-3xl p-6 shadow-[0_8px_32px_rgba(62,207,178,0.12),0_2px_8px_rgba(0,0,0,0.05)] h-full flex flex-col">
