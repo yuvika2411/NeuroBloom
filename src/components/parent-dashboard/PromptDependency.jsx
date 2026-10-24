@@ -13,10 +13,10 @@ export default function PromptDependency() {
   const firstInd = promptDependency[0]?.independent || 0;
 
   return (
-    <div className="bg-white/55 backdrop-blur-lg border border-white/60 rounded-3xl p-6 shadow-[0_8px_32px_rgba(62,207,178,0.12),0_2px_8px_rgba(0,0,0,0.05)] flex flex-col">
+    <div className="bg-white/70 backdrop-blur-lg border border-indigo-100/80 rounded-3xl p-6 shadow-[0_8px_32px_rgba(99,102,241,0.1),0_2px_8px_rgba(15,23,42,0.04)] flex flex-col">
       <div className="mb-6">
-        <h2 className="font-nunito font-bold text-xl text-[#1B2D3E] mb-1">Independence Growth</h2>
-        <p className="font-dm-sans text-[#8FA3B1] text-xs">How often {child.name} completes tasks without prompts</p>
+        <h2 className="font-nunito font-bold text-xl text-[#0F172A] mb-1">Independence Growth</h2>
+        <p className="font-dm-sans text-[#64748B] text-xs">How often {child.name} completes tasks without prompts</p>
       </div>
 
       <motion.div
@@ -28,50 +28,50 @@ export default function PromptDependency() {
       >
         {promptDependency.map((weekData, index) => (
           <div key={index} className="flex items-center gap-4">
-            <div className="w-14 font-dm-sans text-xs text-[#8FA3B1] font-bold text-right shrink-0">
+            <div className="w-14 font-dm-sans text-xs text-[#64748B] font-bold text-right shrink-0">
               {weekData.week}
             </div>
-            <div className="flex-1 h-8 rounded-full overflow-hidden flex shadow-inner border border-white bg-white/40">
-              {/* Independent - Green */}
+            <div className="flex-1 h-8 rounded-full overflow-hidden flex shadow-inner border border-white bg-slate-100/70">
+              {/* Independent - SynaptiX Indigo */}
               <motion.div
-                className="h-full bg-[#3ECFB2] flex items-center justify-center overflow-hidden"
+                className="h-full bg-[#6366F1] flex items-center justify-center overflow-hidden"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${weekData.independent}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
               >
                 {weekData.independent > 15 && (
-                  <span className="text-[10px] font-bold text-white/90 font-dm-sans whitespace-nowrap">
+                  <span className="text-[10px] font-bold text-white font-dm-sans whitespace-nowrap">
                     {weekData.independent}%
                   </span>
                 )}
               </motion.div>
-              
+
               {/* Prompted - Amber */}
               <motion.div
-                className="h-full bg-[#FFC043] flex items-center justify-center overflow-hidden"
+                className="h-full bg-[#F59E0B] flex items-center justify-center overflow-hidden"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${weekData.prompted}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
               >
                 {weekData.prompted > 15 && (
-                  <span className="text-[10px] font-bold text-white/90 font-dm-sans whitespace-nowrap">
+                  <span className="text-[10px] font-bold text-white font-dm-sans whitespace-nowrap">
                     {weekData.prompted}%
                   </span>
                 )}
               </motion.div>
 
-              {/* Skipped - Coral */}
+              {/* Skipped - Rose */}
               <motion.div
-                className="h-full bg-[#FF7E6B] flex items-center justify-center overflow-hidden"
+                className="h-full bg-[#F43F5E] flex items-center justify-center overflow-hidden"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${weekData.skipped}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
               >
                 {weekData.skipped > 15 && (
-                  <span className="text-[10px] font-bold text-white/90 font-dm-sans whitespace-nowrap">
+                  <span className="text-[10px] font-bold text-white font-dm-sans whitespace-nowrap">
                     {weekData.skipped}%
                   </span>
                 )}
@@ -81,15 +81,21 @@ export default function PromptDependency() {
         ))}
       </motion.div>
 
-      <div className="flex justify-center items-center gap-4 font-dm-sans text-[11px] text-[#8FA3B1] font-bold mb-6">
-        <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#3ECFB2]"></span> Independent</div>
-        <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#FFC043]"></span> Prompted</div>
-        <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#FF7E6B]"></span> Skipped</div>
+      {/* Legend */}
+      <div className="flex items-center justify-center gap-6 text-xs font-dm-sans text-[#64748B] mb-6">
+        <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#6366F1]"></span> Independent</div>
+        <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]"></span> Prompted</div>
+        <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#F43F5E]"></span> Skipped</div>
       </div>
 
-      <div className="bg-[#3ECFB2] rounded-2xl p-4 text-center shadow-[0_4px_12px_rgba(62,207,178,0.3)] mt-auto">
-        <p className="font-nunito font-bold text-white text-sm">
-          {child.name} is {latestInd}% independent this week — up from {firstInd}% at start. <PartyPopper size={16} className="inline-block ml-1 pb-0.5" />
+      {/* Bottom Highlight Callout */}
+      <div className="bg-gradient-to-r from-[#6366F1] to-[#4F46E5] text-white rounded-2xl p-4 text-center shadow-[0_4px_16px_rgba(99,102,241,0.25)] mt-auto">
+        <p className="font-nunito font-bold text-sm text-white flex items-center justify-center gap-1.5 mb-0.5">
+          <span>{latestInd}% Independent this week</span>
+          <PartyPopper size={16} className="text-amber-300" />
+        </p>
+        <p className="font-dm-sans text-xs text-indigo-100">
+          Up from {firstInd}% at start • Prompt fading is working!
         </p>
       </div>
     </div>

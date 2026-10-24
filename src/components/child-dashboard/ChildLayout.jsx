@@ -9,11 +9,11 @@ import { useChildStore } from "../../stores/useChildStore";
 
 const themeConfigs = {
   default: {
-    bg: "bg-[#F8FAFC]",
-    gridBase: "rgba(62, 207, 178, 0.1)",
-    gridGlow: "rgba(62, 207, 178, 0.35)",
-    spotlight: "rgba(62, 207, 178, 0.15)",
-    stars: "text-[#3ECFB2]/20"
+    bg: "bg-[#F4F6FC]",
+    gridBase: "rgba(99, 102, 241, 0.1)",
+    gridGlow: "rgba(99, 102, 241, 0.35)",
+    spotlight: "rgba(99, 102, 241, 0.15)",
+    stars: "text-[#6366F1]/25"
   },
   pastel: {
     bg: "bg-[#FDF4FF]",

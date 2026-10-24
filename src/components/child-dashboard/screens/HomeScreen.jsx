@@ -86,18 +86,18 @@ export default function HomeScreen() {
           >
             <div className="flex flex-col items-center gap-2 text-center flex-1 min-h-0 justify-center">
               <div className={`w-[52px] h-[52px] rounded-2xl flex items-center justify-center text-2xl shadow-sm shrink-0 ${
-                mod.completed ? "bg-[#3ECFB2]/20" : (!mod.unlocked ? "bg-gray-100" : "bg-white border-2 border-[#3ECFB2]/30")
+                mod.completed ? "bg-[#6366F1]/15" : (!mod.unlocked ? "bg-gray-100" : "bg-white border-2 border-[#6366F1]/30")
               }`}>
-                {moduleIconMap[mod.emoji] || <Gamepad2 size={32} className="text-[#1B2D3E]" />}
+                {moduleIconMap[mod.emoji] || <Gamepad2 size={32} className="text-[#0F172A]" />}
               </div>
               <div className="min-h-0">
-                <h2 className="font-nunito font-bold text-[13px] md:text-[15px] text-[#1B2D3E] leading-tight line-clamp-2">{mod.title}</h2>
+                <h2 className="font-nunito font-bold text-[13px] md:text-[15px] text-[#0F172A] leading-tight line-clamp-2">{mod.title}</h2>
               </div>
             </div>
             
             <div className="shrink-0 w-full mt-3">
               {mod.completed ? (
-                <div className="bg-[#E8FAF6] text-[#1A9E8C] border-2 border-[#3ECFB2]/30 px-2 py-1 rounded-xl text-xs font-bold font-nunito flex items-center gap-1 justify-center h-[38px] w-full">
+                <div className="bg-[#EEF2FF] text-[#4F46E5] border-2 border-[#6366F1]/30 px-2 py-1 rounded-xl text-xs font-bold font-nunito flex items-center gap-1 justify-center h-[38px] w-full">
                   <span>✓ Completed</span>
                 </div>
               ) : !mod.unlocked ? (
@@ -109,7 +109,7 @@ export default function HomeScreen() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleStart(mod)}
-                  className="bg-gradient-to-b from-[#3ECFB2] to-[#2BB89B] text-white px-2 py-1 rounded-xl text-xs font-bold font-nunito flex items-center gap-1 justify-center h-[38px] w-full shadow-[0_3px_0_#1A9E8C] active:translate-y-1 active:shadow-none transition-all"
+                  className="bg-gradient-to-b from-[#6366F1] to-[#4F46E5] text-white px-2 py-1 rounded-xl text-xs font-bold font-nunito flex items-center gap-1 justify-center h-[38px] w-full shadow-[0_3px_0_#3730A3] active:translate-y-1 active:shadow-none transition-all"
                 >
                   <span>▶ Play!</span>
                 </motion.button>

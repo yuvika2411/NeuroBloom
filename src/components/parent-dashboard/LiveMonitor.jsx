@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useParentStore } from "../../stores/useParentStore";
-import { 
-  Activity, 
-  Brain, 
-  Clock, 
-  CheckCircle2, 
-  Heart, 
-  Send, 
-  Sparkles, 
-  Zap, 
+import {
+  Activity,
+  Brain,
+  Clock,
+  CheckCircle2,
+  Heart,
+  Send,
+  Sparkles,
+  Zap,
   ShieldCheck,
   Smile,
   Target,
@@ -20,10 +20,10 @@ import {
 } from "lucide-react";
 
 export default function LiveMonitor() {
-  const { 
-    liveChildStatus = {}, 
-    questionTelemetryLog = [], 
-    realtimeMetrics = {}, 
+  const {
+    liveChildStatus = {},
+    questionTelemetryLog = [],
+    realtimeMetrics = {},
     sendParentCheer,
     emotionHistory = []
   } = useParentStore();
@@ -49,13 +49,13 @@ export default function LiveMonitor() {
   return (
     <div className="space-y-6">
       {/* Live Active Status Header Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-teal-950 to-slate-900 text-white rounded-3xl p-6 shadow-xl border border-teal-500/30 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-6 shadow-xl border border-indigo-500/30 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="flex items-center gap-4">
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-3xl">
+              <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-3xl">
                 🧒
               </div>
               <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center">
@@ -66,12 +66,12 @@ export default function LiveMonitor() {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-nunito font-bold text-2xl text-white">Arjun is Active Now</h2>
-                <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold font-dm-sans flex items-center gap-1">
-                  <Activity size={12} className="animate-pulse" /> Live Telemetry
+                <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-bold font-dm-sans flex items-center gap-1">
+                  <Activity size={12} className="animate-pulse" /> SynaptiX Live Telemetry
                 </span>
               </div>
               <p className="text-xs text-slate-300 font-dm-sans mt-0.5">
-                Current Activity: <strong className="text-teal-300">{liveChildStatus.activeGame || "Emotion Match Game"}</strong> • Screen: <span className="text-slate-400 capitalize">{liveChildStatus.currentScreen || "play"}</span>
+                Current Activity: <strong className="text-indigo-300">{liveChildStatus.activeGame || "Emotion Match Game"}</strong> • Screen: <span className="text-slate-400 capitalize">{liveChildStatus.currentScreen || "play"}</span>
               </p>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function LiveMonitor() {
               <span className="text-[11px] text-slate-400 block font-dm-sans">ML Emotion State</span>
               <div className="flex items-center gap-1.5 mt-1">
                 <span className="text-xl">{emotionEmojis[liveChildStatus.currentEmotion] || "🎯"}</span>
-                <span className="font-nunito font-bold text-sm text-teal-300">{liveChildStatus.currentEmotion}</span>
+                <span className="font-nunito font-bold text-sm text-indigo-300">{liveChildStatus.currentEmotion}</span>
               </div>
             </div>
 
@@ -149,7 +149,7 @@ export default function LiveMonitor() {
                 value={cheerMsg}
                 onChange={(e) => setCheerMsg(e.target.value)}
                 placeholder="Type custom encouraging note..."
-                className="flex-1 px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-teal-400 font-dm-sans"
+                className="flex-1 px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-indigo-400 font-dm-sans"
               />
               <button
                 onClick={() => {
@@ -158,7 +158,7 @@ export default function LiveMonitor() {
                     setCheerMsg("");
                   }
                 }}
-                className="px-4 py-2 bg-[#3ECFB2] text-white rounded-xl text-xs font-nunito font-bold shadow-sm hover:bg-[#34BBA0] transition-colors"
+                className="px-4 py-2 bg-[#6366F1] text-white rounded-xl text-xs font-nunito font-bold shadow-sm hover:bg-[#4F46E5] transition-colors"
               >
                 <Send size={14} />
               </button>

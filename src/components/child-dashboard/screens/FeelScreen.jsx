@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChildStore } from "../../../stores/useChildStore";
-import { Wind, Flower, Leaf, Heart, Smile, Meh, Frown, Moon } from "lucide-react";
+import { Wind, Flower, Sparkles, Heart, Smile, Meh, Frown, Moon } from "lucide-react";
 
 function CalmingScreen({ onClose }) {
   const [phase, setPhase] = useState('inhale');
@@ -20,11 +20,11 @@ function CalmingScreen({ onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-gradient-to-br from-[#C4B5FD]/40 to-[#4A90D9]/20 backdrop-blur-sm flex flex-col items-center justify-center"
+      className="fixed inset-0 z-50 bg-gradient-to-br from-[#6366F1]/40 to-[#06B6D4]/20 backdrop-blur-sm flex flex-col items-center justify-center"
     >
       <button 
         onClick={onClose}
-        className="absolute top-6 left-6 px-4 py-2 bg-white/50 backdrop-blur-md rounded-2xl font-nunito font-bold text-[#1B2D3E] shadow-sm flex items-center gap-2 border border-white"
+        className="absolute top-6 left-6 px-4 py-2 bg-white/70 backdrop-blur-md rounded-2xl font-nunito font-bold text-[#0F172A] shadow-sm flex items-center gap-2 border border-white"
       >
         <span>←</span> Back
       </button>
@@ -33,12 +33,12 @@ function CalmingScreen({ onClose }) {
         className="w-48 h-48 rounded-full border-4 flex items-center justify-center mb-8"
         animate={{ 
           scale: [1, 1.4, 1], 
-          backgroundColor: ['rgba(74,144,217,0.3)', 'rgba(196,181,253,0.4)', 'rgba(74,144,217,0.3)'],
-          borderColor: ['rgba(74,144,217,0.5)', 'rgba(196,181,253,0.5)', 'rgba(74,144,217,0.5)']
+          backgroundColor: ['rgba(99,102,241,0.25)', 'rgba(6,182,212,0.3)', 'rgba(99,102,241,0.25)'],
+          borderColor: ['rgba(99,102,241,0.5)', 'rgba(6,182,212,0.5)', 'rgba(99,102,241,0.5)']
         }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <Wind size={64} className="text-[#4A90D9]" />
+        <Wind size={64} className="text-[#6366F1]" />
       </motion.div>
 
       <motion.div
@@ -48,13 +48,13 @@ function CalmingScreen({ onClose }) {
         exit={{ opacity: 0, y: -10 }}
         className="h-10 flex items-center justify-center mb-12"
       >
-        <p className="font-nunito font-medium text-2xl text-[#1B2D3E]">
-          {phase === 'inhale' ? <>Breathe in... <Flower size={24} className="inline-block text-[#C4B5FD] ml-2 mb-1" /></> : <>Breathe out... <Leaf size={24} className="inline-block text-[#3ECFB2] ml-2 mb-1" /></>}
+        <p className="font-nunito font-medium text-2xl text-[#0F172A]">
+          {phase === 'inhale' ? <>Breathe in... <Sparkles size={24} className="inline-block text-[#A855F7] ml-2 mb-1" /></> : <>Breathe out... <Sparkles size={24} className="inline-block text-[#6366F1] ml-2 mb-1" /></>}
         </p>
       </motion.div>
 
-      <p className="font-dm-sans text-[16px] text-[#1B2D3E]/70 absolute bottom-12">
-        You're safe. Take your time. <Heart size={16} className="inline-block text-[#4A90D9] ml-1 mb-0.5" />
+      <p className="font-dm-sans text-[16px] text-[#0F172A]/70 absolute bottom-12">
+        You're safe. Take your time. <Heart size={16} className="inline-block text-[#6366F1] ml-1 mb-0.5" />
       </p>
     </motion.div>
   );
@@ -66,19 +66,19 @@ export default function FeelScreen() {
   const [justSelected, setJustSelected] = useState(false);
 
   const moodIconMap = {
-    '😄': <Smile size={36} className="text-[#FFB020]" />,
-    '😊': <Smile size={36} className="text-[#3ECFB2]" />,
-    '😐': <Meh size={36} className="text-[#4A90D9]" />,
-    '😕': <Frown size={36} className="text-[#FF7E6B]" />,
-    '😢': <Frown size={36} className="text-[#C4B5FD]" />,
+    '😄': <Smile size={36} className="text-[#F59E0B]" />,
+    '😊': <Smile size={36} className="text-[#6366F1]" />,
+    '😐': <Meh size={36} className="text-[#06B6D4]" />,
+    '😕': <Frown size={36} className="text-[#F43F5E]" />,
+    '😢': <Frown size={36} className="text-[#A855F7]" />,
   };
 
   const moods = [
     { id: 'great', emoji: '😄', label: 'Great!', bg: 'bg-[#FFF9C4]', border: 'border-[#FFF59D]', activeBg: 'bg-[#FFF9C4]', screenBg: '#FFF9C4' },
-    { id: 'good', emoji: '😊', label: 'Good', bg: 'bg-[#E8FAF6]', border: 'border-[#3ECFB2]/50', activeBg: 'bg-[#E8FAF6]', screenBg: '#E8FAF6' },
+    { id: 'good', emoji: '😊', label: 'Good', bg: 'bg-[#EEF2FF]', border: 'border-[#6366F1]/50', activeBg: 'bg-[#EEF2FF]', screenBg: '#EEF2FF' },
     { id: 'ok', emoji: '😐', label: 'OK', bg: 'bg-[#EFF6FF]', border: 'border-[#BFDBFE]', activeBg: 'bg-[#EFF6FF]', screenBg: '#EFF6FF' },
     { id: 'notgreat', emoji: '😕', label: 'Not great', bg: 'bg-[#FFF3E0]', border: 'border-[#FFCC80]', activeBg: 'bg-[#FFF3E0]', screenBg: '#FFF3E0' },
-    { id: 'sad', emoji: '😢', label: 'Sad', bg: 'bg-[#F3F0FF]', border: 'border-[#C4B5FD]', activeBg: 'bg-[#F3F0FF]', screenBg: '#F3F0FF' },
+    { id: 'sad', emoji: '😢', label: 'Sad', bg: 'bg-[#F3F0FF]', border: 'border-[#A855F7]', activeBg: 'bg-[#F3F0FF]', screenBg: '#F3F0FF' },
   ];
 
   const handleSelect = (m) => {
@@ -100,7 +100,7 @@ export default function FeelScreen() {
         animate={{ backgroundColor: activeMoodObj ? activeMoodObj.screenBg : 'transparent' }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="font-nunito font-bold text-[26px] text-[#1B2D3E] text-center pt-8 mb-8 leading-tight">
+        <h1 className="font-nunito font-bold text-[26px] text-[#0F172A] text-center pt-8 mb-8 leading-tight">
           How are you feeling right now?
         </h1>
 
@@ -118,10 +118,10 @@ export default function FeelScreen() {
                 className={`rounded-3xl p-2 flex flex-col items-center justify-center gap-2 border-2 min-h-[90px] w-full transition-colors relative z-10 ${
                   isSelected ? `${m.activeBg} ${m.border}` : 'bg-white/60 border-white/80'
                 }`}
-                style={isSelected ? { filter: 'drop-shadow(0 0 12px rgba(62,207,178,0.5))' } : {}}
+                style={isSelected ? { filter: 'drop-shadow(0 0 12px rgba(99,102,241,0.4))' } : {}}
               >
                 <div className="mb-1">{moodIconMap[m.emoji] || m.emoji}</div>
-                <span className="font-dm-sans text-[11px] font-bold text-[#1B2D3E] text-center leading-none">
+                <span className="font-dm-sans text-[11px] font-bold text-[#0F172A] text-center leading-none">
                   {m.label}
                 </span>
               </motion.button>
@@ -135,10 +135,10 @@ export default function FeelScreen() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-3 border border-white shadow-sm"
+              className="bg-white/90 backdrop-blur-md rounded-2xl px-6 py-3 border border-indigo-100 shadow-sm"
             >
-              <p className="font-nunito font-bold text-[20px] text-[#3ECFB2]">
-                Thanks for telling us, {child.name}! <Heart size={20} className="inline-block text-[#3ECFB2] ml-1 mb-1" />
+              <p className="font-nunito font-bold text-[20px] text-[#6366F1]">
+                Thanks for telling us, {child.name}! <Heart size={20} className="inline-block text-[#6366F1] ml-1 mb-1" />
               </p>
             </motion.div>
           )}
@@ -146,10 +146,10 @@ export default function FeelScreen() {
 
         <button 
           onClick={() => setShowCalm(true)}
-          className="mt-auto mb-4 bg-[#C4B5FD]/20 border-2 border-[#C4B5FD]/50 text-[#1B2D3E] font-nunito font-bold text-[18px] px-8 py-4 rounded-2xl flex items-center justify-center gap-3 active:scale-95 transition-transform w-full max-w-xs shadow-sm backdrop-blur-sm"
+          className="mt-auto mb-4 bg-indigo-50 border-2 border-indigo-200 text-[#0F172A] font-nunito font-bold text-[18px] px-8 py-4 rounded-2xl flex items-center justify-center gap-3 active:scale-95 transition-transform w-full max-w-xs shadow-sm backdrop-blur-sm"
         >
           <span>Need a break?</span>
-          <Moon size={24} />
+          <Moon size={24} className="text-[#6366F1]" />
         </button>
       </motion.div>
     </>

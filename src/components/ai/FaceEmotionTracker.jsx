@@ -112,11 +112,10 @@ export default function FaceEmotionTracker({ onEmotionUpdate, compact = false })
       <div className="relative inline-flex items-center gap-2">
         <button
           onClick={() => setCameraActive(!cameraActive)}
-          className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-nunito font-bold border transition-all ${
-            cameraActive
+          className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-nunito font-bold border transition-all ${cameraActive
               ? "bg-[#3ECFB2]/15 text-[#1A9E8C] border-[#3ECFB2]/40 shadow-sm"
               : "bg-white/80 text-gray-600 border-gray-200 hover:bg-white"
-          }`}
+            }`}
           title="Toggle Webcam ML Emotion Tracking"
         >
           {cameraActive ? (
@@ -263,11 +262,11 @@ export default function FaceEmotionTracker({ onEmotionUpdate, compact = false })
               </div>
               <h3 className="text-lg font-nunito font-bold text-slate-800">100% On-Device Privacy</h3>
               <p className="text-xs text-slate-600 leading-relaxed font-dm-sans">
-                NeuroBloom's facial expression ML model processes webcam frames <strong>entirely inside your browser</strong>. Video streams are analyzed in volatile memory and are <strong>never recorded, stored, or sent</strong> to external servers.
+                SynaptiX's facial expression ML model processes webcam frames <strong>entirely inside your browser</strong>. Video streams are analyzed in volatile memory and are <strong>never recorded, stored, or sent</strong> to external servers.
               </p>
               <button
                 onClick={() => setShowPrivacyModal(false)}
-                className="w-full py-2.5 bg-teal-500 text-white rounded-xl font-bold text-xs shadow-md hover:bg-teal-600"
+                className="w-full py-2.5 bg-[#6366F1] text-white rounded-xl font-bold text-xs shadow-md hover:bg-[#4F46E5] transition-colors"
               >
                 Got It
               </button>

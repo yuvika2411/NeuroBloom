@@ -5,38 +5,42 @@ import { staggerContainer, fadeUp } from "../../lib/animations";
 
 export default function Research() {
   const methodologies = [
-    "ABA Therapy", "Discrete Trial Training", "Natural Environment Teaching", 
-    "ATEC Tracking", "SRS Measurement", "Prompt Fading"
+    "Applied Behavior Analysis (ABA)",
+    "Discrete Trial Training (DTT)",
+    "Picture Exchange Communication System (PECS)",
+    "Social Emotional Learning (SEL)",
+    "Natural Environment Teaching (NET)"
   ];
 
   return (
-    <section className="py-24 bg-[#E8FAF6] overflow-hidden">
+    <section id="research" className="py-24 bg-[#F4F6FC] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
+          className="flex flex-col items-center"
         >
           <motion.div variants={fadeUp} className="text-center mb-16">
-            <span className="font-dm-sans text-[#1A9E8C] font-semibold mb-3 block text-lg bg-white/50 px-4 py-1.5 rounded-full inline-block border border-white/60">
-              Evidence-Based
+            <span className="font-dm-sans text-[#4F46E5] font-semibold mb-3 block text-lg bg-indigo-50 px-4 py-1.5 rounded-full inline-block border border-indigo-100">
+              Clinical Foundation
             </span>
-            <h2 className="font-nunito font-bold text-3xl md:text-[38px] text-[#1B2D3E]">
-              Not Just Fun — Clinically Grounded
+            <h2 className="font-nunito font-bold text-3xl md:text-[38px] text-[#0F172A]">
+              Grounded in Decades of Clinical Research
             </h2>
           </motion.div>
 
           {/* Marquee Pills */}
           <motion.div variants={fadeUp} className="relative w-full overflow-hidden mb-20 py-4">
-            <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-[#E8FAF6] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-[#E8FAF6] to-transparent z-10 pointer-events-none"></div>
-            
+            <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-[#F4F6FC] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-[#F4F6FC] to-transparent z-10 pointer-events-none"></div>
+
             <div className="flex w-max space-x-6 animate-[scroll_20s_linear_infinite]">
               {[...methodologies, ...methodologies].map((method, idx) => (
                 <motion.div
                   key={idx}
-                  className="bg-white/60 backdrop-blur-sm border border-white/80 rounded-full px-6 py-3 text-sm md:text-base font-medium text-[#1A9E8C] shadow-sm flex items-center whitespace-nowrap"
+                  className="bg-white/70 backdrop-blur-sm border border-indigo-100 rounded-full px-6 py-3 text-sm md:text-base font-medium text-[#4F46E5] shadow-xs flex items-center whitespace-nowrap"
                   animate={{ backgroundPosition: ["0% 50%", "200% 50%"] }}
                   transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
                   style={{
@@ -44,7 +48,7 @@ export default function Research() {
                     backgroundSize: "200% 100%"
                   }}
                 >
-                  <span className="text-[#3ECFB2] mr-2">✦</span> {method}
+                  <span className="text-[#6366F1] mr-2">✦</span> {method}
                 </motion.div>
               ))}
             </div>
@@ -52,30 +56,31 @@ export default function Research() {
 
           {/* Stat Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <motion.div variants={fadeUp} className="clay-card p-10 border-l-4 border-l-[#3ECFB2] border-t-white/60 border-r-white/60 border-b-white/60 flex flex-col justify-center">
-              <div className="font-sora text-5xl md:text-6xl font-bold text-[#3ECFB2] mb-4">47%</div>
-              <p className="font-dm-sans text-lg text-[#1B2D3E] font-medium leading-relaxed">
+            <motion.div variants={fadeUp} className="clay-card p-10 border-l-4 border-l-[#6366F1] border-t-white/60 border-r-white/60 border-b-white/60 flex flex-col justify-center">
+              <div className="font-sora text-5xl md:text-6xl font-bold text-[#6366F1] mb-4">47%</div>
+              <p className="font-dm-sans text-lg text-[#0F172A] font-medium leading-relaxed">
                 improvement in communication outcomes in children receiving early ABA-based digital intervention
               </p>
             </motion.div>
-            
-            <motion.div variants={fadeUp} className="clay-card p-10 border-l-4 border-l-[#4A90D9] border-t-white/60 border-r-white/60 border-b-white/60 flex flex-col justify-center">
-              <div className="font-sora text-5xl md:text-6xl font-bold text-[#4A90D9] mb-4">95%+</div>
-              <p className="font-dm-sans text-lg text-[#1B2D3E] font-medium leading-relaxed">
+
+            <motion.div variants={fadeUp} className="clay-card p-10 border-l-4 border-l-[#06B6D4] border-t-white/60 border-r-white/60 border-b-white/60 flex flex-col justify-center">
+              <div className="font-sora text-5xl md:text-6xl font-bold text-[#06B6D4] mb-4">95%+</div>
+              <p className="font-dm-sans text-lg text-[#0F172A] font-medium leading-relaxed">
                 treatment adherence in digital therapeutic programs vs. 60% in traditional clinic settings
               </p>
             </motion.div>
           </div>
 
           <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto">
-            <p className="font-dm-sans font-medium text-xl text-[#1B2D3E] leading-relaxed px-6">
-              NeuroBloom combines behavioral science with computational logic — the next generation of evidence-based digital therapy.
+            <p className="font-dm-sans font-medium text-xl text-[#0F172A] leading-relaxed px-6">
+              SynaptiX combines behavioral science with computational logic — the next generation of evidence-based digital therapy.
             </p>
           </motion.div>
         </motion.div>
       </div>
 
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }

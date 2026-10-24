@@ -13,7 +13,7 @@ import Footer from '../components/landing/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#E8FAF6] text-[#1B2D3E] font-dm-sans selection:bg-[#3ECFB2] selection:text-white">
+    <main className="min-h-screen bg-[#F4F6FC] text-[#0F172A] font-dm-sans selection:bg-[#6366F1] selection:text-white">
       <Navbar />
       <Hero />
       <ProblemSection />

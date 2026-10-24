@@ -7,17 +7,17 @@ import { Star } from "lucide-react";
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "Within 3 weeks, Arjun started using picture symbols to ask for things. We hadn't seen that in 2 years of clinic visits.",
+      quote: "Within 3 weeks, Arjun started using picture symbols to ask for things. We hadn't seen that in 2 years of clinic visits. SynaptiX made all the difference.",
       name: "Priya M.",
       role: "Parent of 6-year-old"
     },
     {
-      quote: "The parent dashboard gives me insights I used to get only during monthly check-ins. Now I adapt Rohan's plan weekly.",
+      quote: "The parent dashboard gives me insights I used to get only during monthly check-ins. Now I adapt Rohan's plan weekly using SynaptiX's verified telemetry.",
       name: "Dr. Neha Sharma",
       role: "Behavioral Therapist"
     },
     {
-      quote: "The games actually hold her attention. The emotion detection told us she was calm and focused the whole time.",
+      quote: "The games actually hold her attention without sensory overload. The emotion detection proved she was calm and focused the entire time.",
       name: "Amit K.",
       role: "Father of 8-year-old"
     }
@@ -33,8 +33,11 @@ export default function Testimonials() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <motion.div variants={fadeUp} className="text-center mb-16">
-            <h2 className="font-nunito font-bold text-3xl md:text-[38px] text-[#1B2D3E]">
-              Families Who Found Their Bloom
+            <span className="font-dm-sans text-[#4F46E5] font-semibold mb-3 block text-lg bg-indigo-50 px-4 py-1.5 rounded-full inline-block border border-indigo-100">
+              Community Stories
+            </span>
+            <h2 className="font-nunito font-bold text-3xl md:text-[38px] text-[#0F172A]">
+              Families Who Reached New Heights with SynaptiX
             </h2>
           </motion.div>
 
@@ -43,35 +46,35 @@ export default function Testimonials() {
               <motion.div
                 key={index}
                 variants={fadeUp}
-                className="snap-center shrink-0 w-[85vw] md:w-auto clay-card bg-white/70 backdrop-blur-md p-8 relative flex flex-col group hover:shadow-xl transition-all duration-300 border-2 border-white/80"
+                className="snap-center shrink-0 w-[85vw] md:w-auto clay-card bg-white/75 backdrop-blur-md p-8 relative flex flex-col group hover:shadow-xl transition-all duration-300 border-2 border-indigo-50/80"
               >
                 {/* Decorative Quote */}
-                <div className="text-[120px] text-[#3ECFB2]/15 font-bold absolute -top-8 left-4 leading-none select-none font-serif">
+                <div className="text-[120px] text-[#6366F1]/15 font-bold absolute -top-8 left-4 leading-none select-none font-serif">
                   "
                 </div>
 
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex gap-1 mb-6 text-[#FFB020]">
+                  <div className="flex gap-1 mb-6 text-[#F59E0B]">
                     <Star size={16} fill="currentColor" />
                     <Star size={16} fill="currentColor" />
                     <Star size={16} fill="currentColor" />
                     <Star size={16} fill="currentColor" />
                     <Star size={16} fill="currentColor" />
                   </div>
-                  
-                  <p className="font-dm-sans italic text-lg text-[#1B2D3E] mb-8 leading-relaxed flex-grow">
+
+                  <p className="font-dm-sans italic text-lg text-[#0F172A] mb-8 leading-relaxed flex-grow">
                     "{testi.quote}"
                   </p>
-                  
+
                   <div className="flex items-center gap-4 mt-auto">
-                    <div className="bg-[#E8FAF6] rounded-full w-12 h-12 flex items-center justify-center font-nunito font-bold text-[#1A9E8C] text-lg border-2 border-white shadow-sm shrink-0">
+                    <div className="bg-indigo-50 rounded-full w-12 h-12 flex items-center justify-center font-nunito font-bold text-[#4F46E5] text-lg border-2 border-indigo-100 shadow-xs shrink-0">
                       {testi.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-nunito font-bold text-[#1B2D3E]">
+                      <div className="font-nunito font-bold text-[#0F172A]">
                         {testi.name}
                       </div>
-                      <div className="font-dm-sans text-sm text-[#8FA3B1]">
+                      <div className="font-dm-sans text-sm text-[#64748B]">
                         {testi.role}
                       </div>
                     </div>
@@ -83,7 +86,8 @@ export default function Testimonials() {
         </motion.div>
       </div>
 
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />

@@ -12,7 +12,7 @@ export default function PuzzleGame() {
   
   const levels = [
     { target: <Star size={100} fill="currentColor" className="text-[#FFB020]" />, options: [<Star size={64} fill="currentColor" className="text-[#FFB020]" />, <Moon size={64} fill="currentColor" className="text-[#C4B5FD]" />, <Sun size={64} fill="currentColor" className="text-[#FF7E6B]" />], correct: 0, hint: "Match the bright 5-pointed star!" },
-    { target: <Flower size={100} className="text-[#4A90D9]" />, options: [<Bug size={64} className="text-[#FF7E6B]" />, <Flower size={64} className="text-[#4A90D9]" />, <Leaf size={64} className="text-[#3ECFB2]" />], correct: 1, hint: "Match the blooming blue flower!" },
+    { target: <Flower size={100} className="text-[#4A90D9]" />, options: [<Bug size={64} className="text-[#FF7E6B]" />, <Flower size={64} className="text-[#4A90D9]" />, <Sparkles size={64} className="text-[#6366F1]" />], correct: 1, hint: "Match the blooming blue flower!" },
     { target: <Gift size={100} className="text-[#FFB020]" />, options: [<Gift size={64} className="text-[#FFB020]" />, <Heart size={64} className="text-[#FF7E6B]" />, <Music size={64} className="text-[#4A90D9]" />], correct: 0, hint: "Match the gift box with a bow!" }
   ];
 

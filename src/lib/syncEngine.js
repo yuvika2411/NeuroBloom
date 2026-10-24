@@ -1,9 +1,9 @@
 /**
- * Real-Time Cross-Tab Telemetry Sync Engine for NeuroBloom
+ * Real-Time Cross-Tab Telemetry Sync Engine for SynaptiX
  * Uses BroadcastChannel API with localStorage fallback for 0-latency live sync between Child & Parent Dashboards
  */
 
-const CHANNEL_NAME = 'neurobloom_realtime_sync';
+const CHANNEL_NAME = 'SynaptiX_realtime_sync';
 
 class SyncEngine {
   constructor() {

@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-teal: #3ECFB2;
-  --color-teal-dark: #1A9E8C;
-  --color-mint: #E8FAF6;
-  --color-cloud: #F5FDFC;
-  --color-blue: #4A90D9;
-  --color-sand: #FFF4E3;
-  --color-coral: #FF7E6B;
-  --color-lavender: #C4B5FD;
-  --color-navy: #1B2D3E;
-  --color-grey: #8FA3B1;
+  --color-teal: #6366F1;
+  --color-teal-dark: #4F46E5;
+  --color-mint: #F4F6FC;
+  --color-cloud: #FFFFFF;
+  --color-blue: #06B6D4;
+  --color-sand: #FEF3C7;
+  --color-coral: #F43F5E;
+  --color-lavender: #A855F7;
+  --color-navy: #0F172A;
+  --color-grey: #64748B;
+
+  --color-SynaptiX-primary: #6366F1;
+  --color-SynaptiX-primary-dark: #4F46E5;
+  --color-SynaptiX-accent: #06B6D4;
+  --color-SynaptiX-violet: #8B5CF6;
+  --color-SynaptiX-amber: #F59E0B;
 }
 
 @layer base {
@@ -22,22 +28,22 @@
 
 @layer utilities {
   .clay-card {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(224, 231, 255, 0.7);
     border-radius: 1.5rem;
-    box-shadow: 0 8px 32px rgba(62, 207, 178, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04);
   }
 
   .clay-btn-primary {
-    background-color: var(--color-teal);
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
     color: white;
     font-weight: 700;
     border-radius: 1rem;
     padding: 0.75rem 1.5rem;
     transition-property: all;
     transition-duration: 150ms;
-    box-shadow: 0 6px 0 var(--color-teal-dark);
+    box-shadow: 0 6px 0 #3730A3, 0 10px 20px -3px rgba(99, 102, 241, 0.35);
   }
 
   .clay-btn-primary:active {
@@ -50,8 +56,8 @@
   }
 
   .ghost-btn {
-    border: 2px solid var(--color-teal);
-    color: var(--color-teal-dark);
+    border: 2px solid #6366F1;
+    color: #4F46E5;
     font-weight: 600;
     border-radius: 1rem;
     padding: 0.75rem 1.5rem;
@@ -60,12 +66,14 @@
   }
 
   .ghost-btn:hover {
-    background-color: rgba(62, 207, 178, 0.1);
+    background-color: rgba(99, 102, 241, 0.08);
   }
 }
 
 @keyframes rotate {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .blob-bg {
@@ -74,13 +82,14 @@
 }
 
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(62,207,178,0.2) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.16) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -97,15 +106,15 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(62, 207, 178, 0.4);
+  background-color: rgba(99, 102, 241, 0.4);
   border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(62, 207, 178, 0.7);
+  background-color: rgba(99, 102, 241, 0.7);
 }
 
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(62, 207, 178, 0.4) transparent;
+  scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
 }

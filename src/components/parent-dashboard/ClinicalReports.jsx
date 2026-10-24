@@ -2,17 +2,17 @@
 
 import { useParentStore } from "../../stores/useParentStore";
 import { useState } from "react";
-import { 
-  FileText, 
-  ChevronDown, 
-  ChevronUp, 
-  Printer, 
-  ShieldCheck, 
-  Activity, 
-  Brain, 
-  Clock, 
-  CheckCircle2, 
-  Award, 
+import {
+  FileText,
+  ChevronDown,
+  ChevronUp,
+  Printer,
+  ShieldCheck,
+  Activity,
+  Brain,
+  Clock,
+  CheckCircle2,
+  Award,
   FileCheck,
   Hospital,
   Sparkles,
@@ -38,18 +38,18 @@ export default function ClinicalReports() {
   return (
     <div className="space-y-6 w-full">
       {/* Header Banner */}
-      <div className="bg-white/80 backdrop-blur-lg border border-slate-100 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white/80 backdrop-blur-lg border border-indigo-100 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Hospital className="text-teal-600" size={24} />
-            <h2 className="font-nunito font-bold text-2xl text-[#1B2D3E]">Hospital Clinical ASD Evaluation Reports</h2>
+            <Hospital className="text-indigo-600" size={24} />
+            <h2 className="font-nunito font-bold text-2xl text-[#0F172A]">SynaptiX Hospital Clinical ASD Evaluation Reports</h2>
           </div>
           <p className="font-dm-sans text-slate-500 text-xs sm:text-sm">
             Official developmental evaluation reports with ML webcam affect analysis & BCBA clinical sign-off
           </p>
         </div>
 
-        <button 
+        <button
           onClick={handlePrint}
           className="bg-slate-900 text-white px-5 py-2.5 rounded-2xl font-nunito font-bold text-sm shadow-md hover:bg-slate-800 transition-colors flex items-center justify-center gap-2"
         >
@@ -59,24 +59,24 @@ export default function ClinicalReports() {
       </div>
 
       {/* Official Hospital Evaluation Report Card (Featured) */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-md border-2 border-teal-100 relative overflow-hidden print:shadow-none print:border-none print:p-0">
-        
+      <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-md border-2 border-indigo-100 relative overflow-hidden print:shadow-none print:border-none print:p-0">
+
         {/* Hospital Letterhead Header */}
         <div className="border-b-2 border-slate-900 pb-6 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-14 h-14 rounded-2xl bg-teal-900 text-white flex items-center justify-center font-bold text-2xl shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-950 text-white flex items-center justify-center font-bold text-2xl shadow-sm">
                 🏥
               </div>
               <div>
                 <h1 className="font-nunito font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight uppercase">
-                  NEUROBLOOM PEDIATRIC & AUTISM CLINICAL CENTER
+                  SynaptiX PEDIATRIC & NEURODEVELOPMENTAL CLINICAL CENTER
                 </h1>
                 <p className="font-dm-sans text-xs text-slate-600 font-semibold">
                   Department of Pediatric Neurodevelopment & Applied Behavior Analysis (ABA)
                 </p>
                 <p className="text-[11px] text-slate-400 font-dm-sans">
-                  204 Medical Heights Plaza, Suite 500 • Medical Records Registry ID: #NB-8942-ASD
+                  204 Medical Heights Plaza, Suite 500 • Medical Records Registry ID: #SynaptiX-8942-ASD
                 </p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function ClinicalReports() {
           </div>
           <div>
             <span className="text-slate-400 font-bold block uppercase text-[10px]">Primary Diagnosis</span>
-            <span className="text-teal-700 font-bold">Autism Spectrum Disorder (Level 1)</span>
+            <span className="text-indigo-700 font-bold">Autism Spectrum Disorder (Level 1)</span>
           </div>
           <div>
             <span className="text-slate-400 font-bold block uppercase text-[10px]">Attending BCBA Therapist</span>
@@ -114,8 +114,8 @@ export default function ClinicalReports() {
 
         {/* Executive Summary & Clinical Assessment Narrative */}
         <div className="space-y-6">
-          <div className="bg-teal-50/60 rounded-2xl p-5 border border-teal-200">
-            <h3 className="font-nunito font-bold text-sm text-teal-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <div className="bg-indigo-50/60 rounded-2xl p-5 border border-indigo-200">
+            <h3 className="font-nunito font-bold text-sm text-indigo-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
               <Brain size={16} /> Clinical Diagnostic Impressions & ABA Progress
             </h3>
             <p className="font-dm-sans text-xs sm:text-sm text-slate-700 leading-relaxed">
@@ -143,30 +143,30 @@ export default function ClinicalReports() {
                   <tr className="hover:bg-slate-50">
                     <td className="p-3 font-bold text-slate-900">I. Speech / AAC Communication</td>
                     <td className="p-3">54 / 100</td>
-                    <td className="p-3 font-bold text-teal-700">78 / 100</td>
+                    <td className="p-3 font-bold text-indigo-700">78 / 100</td>
                     <td className="p-3">18% System Prompted</td>
                     <td className="p-3 text-right font-bold text-emerald-600">Significant Mastery</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-3 font-bold text-slate-900">II. Theory of Mind & Emotion Match</td>
                     <td className="p-3">48 / 100</td>
-                    <td className="p-3 font-bold text-teal-700">72 / 100</td>
+                    <td className="p-3 font-bold text-indigo-700">72 / 100</td>
                     <td className="p-3">14% System Prompted</td>
                     <td className="p-3 text-right font-bold text-emerald-600">Steady Improvement</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-3 font-bold text-slate-900">III. Cognitive & Visual Pattern Match</td>
                     <td className="p-3">65 / 100</td>
-                    <td className="p-3 font-bold text-teal-700">86 / 100</td>
+                    <td className="p-3 font-bold text-indigo-700">86 / 100</td>
                     <td className="p-3">8% System Prompted</td>
                     <td className="p-3 text-right font-bold text-emerald-600">High Competency</td>
                   </tr>
                   <tr className="hover:bg-slate-50">
                     <td className="p-3 font-bold text-slate-900">IV. Executive Routine & Transitions</td>
                     <td className="p-3">42 / 100</td>
-                    <td className="p-3 font-bold text-teal-700">68 / 100</td>
+                    <td className="p-3 font-bold text-indigo-700">68 / 100</td>
                     <td className="p-3">22% System Prompted</td>
-                    <td className="p-3 text-right font-bold text-teal-600">Progressing Well</td>
+                    <td className="p-3 text-right font-bold text-indigo-600">Progressing Well</td>
                   </tr>
                 </tbody>
               </table>
@@ -176,11 +176,11 @@ export default function ClinicalReports() {
           {/* Machine Learning Webcam Camera Telemetry Summary */}
           <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-md border border-slate-800">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-nunito font-bold text-base text-teal-300 flex items-center gap-2">
+              <h3 className="font-nunito font-bold text-base text-indigo-300 flex items-center gap-2">
                 <Sparkles size={18} className="text-amber-400" />
                 <span>On-Device Machine Learning Affect & Attention Camera Telemetry</span>
               </h3>
-              <span className="text-[11px] bg-teal-500/20 text-teal-300 border border-teal-500/30 px-3 py-1 rounded-full font-bold">
+              <span className="text-[11px] bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-3 py-1 rounded-full font-bold">
                 100% Privacy Preserved
               </span>
             </div>
@@ -188,7 +188,7 @@ export default function ClinicalReports() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-dm-sans">
               <div className="bg-white/10 p-3.5 rounded-xl border border-white/10">
                 <span className="text-slate-400 block text-[11px]">Average Focus Index</span>
-                <span className="text-2xl font-bold font-nunito text-teal-300">88%</span>
+                <span className="text-2xl font-bold font-nunito text-indigo-300">88%</span>
                 <p className="text-[10px] text-slate-300 mt-1">Sustained attentive posture throughout DTT sessions</p>
               </div>
 
@@ -221,7 +221,7 @@ export default function ClinicalReports() {
           {/* Official Doctor Signature & Stamp */}
           <div className="pt-8 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
-              <div className="font-serif italic text-slate-800 text-lg font-bold text-teal-900">
+              <div className="font-serif italic text-lg font-bold text-indigo-950">
                 Dr. Neha Sharma, Ph.D., BCBA-D
               </div>
               <p className="text-[11px] text-slate-500 font-dm-sans">
@@ -230,9 +230,9 @@ export default function ClinicalReports() {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="w-16 h-16 rounded-full border-2 border-dashed border-teal-600 flex flex-col items-center justify-center text-[9px] font-bold text-teal-800 text-center leading-tight">
+              <div className="w-16 h-16 rounded-full border-2 border-dashed border-indigo-600 flex flex-col items-center justify-center text-[9px] font-bold text-indigo-800 text-center leading-tight">
                 <span>OFFICIAL</span>
-                <span>CLINICAL</span>
+                <span>SynaptiX</span>
                 <span>SEAL</span>
               </div>
             </div>

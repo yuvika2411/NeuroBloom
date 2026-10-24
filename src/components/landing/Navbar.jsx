@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Leaf } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,19 +27,21 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "backdrop-blur-md bg-white/70 border-b border-white/60 shadow-sm"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
+          ? "backdrop-blur-md bg-white/80 border-b border-indigo-100/60 shadow-sm"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="font-nunito font-bold text-2xl text-[#3ECFB2] flex items-center gap-2">
-              <Leaf size={28} /> NeuroBloom
-            </span>
+            <Link href="/" className="font-nunito font-extrabold text-2xl text-[#0F172A] flex items-center gap-2.5">
+              <span className="p-1.5 rounded-xl bg-[#6366F1]/10 text-[#6366F1] flex items-center justify-center">
+                <Sparkles size={24} className="text-[#6366F1]" />
+              </span>
+              <span>SynaptiX</span>
+            </Link>
           </div>
 
           {/* Desktop Nav Links */}
@@ -48,10 +50,10 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="group relative font-dm-sans text-[#1B2D3E] hover:text-[#3ECFB2] font-medium transition-colors"
+                className="group relative font-dm-sans text-[#0F172A] hover:text-[#6366F1] font-medium transition-colors text-sm"
               >
                 {link.name}
-                <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-[#3ECFB2] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-[#6366F1] transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </div>
@@ -70,7 +72,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-[#1B2D3E] hover:text-[#3ECFB2] focus:outline-none"
+              className="text-[#0F172A] hover:text-[#6366F1] focus:outline-none"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isMobileMenuOpen ? (
@@ -91,14 +93,14 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-20 left-0 w-full backdrop-blur-md bg-white/90 border-b border-white/60 shadow-lg"
+            className="md:hidden absolute top-20 left-0 w-full backdrop-blur-md bg-white/95 border-b border-indigo-100 shadow-lg"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block px-3 py-2 rounded-md font-dm-sans text-base font-medium text-[#1B2D3E] hover:bg-[#E8FAF6] hover:text-[#3ECFB2]"
+                  className="block px-3 py-2 rounded-md font-dm-sans text-base font-medium text-[#0F172A] hover:bg-[#EEF2FF] hover:text-[#6366F1]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}

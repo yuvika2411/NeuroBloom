@@ -202,10 +202,10 @@ export const useParentStore = create((set, get) => {
       { day: 'Sun', focusScore: 78, attentionSpan: 14, solveSpeedSec: 3.5 },
     ],
     categoryTimeData: [
-      { name: 'Emotions', value: 45, color: '#FFB020' },
-      { name: 'Communication', value: 30, color: '#3ECFB2' },
-      { name: 'Puzzles', value: 15, color: '#4A90D9' },
-      { name: 'Executive', value: 10, color: '#C4B5FD' },
+      { name: 'Emotions', value: 45, color: '#F59E0B' },
+      { name: 'Communication', value: 30, color: '#6366F1' },
+      { name: 'Puzzles', value: 15, color: '#06B6D4' },
+      { name: 'Executive', value: 10, color: '#A855F7' },
     ],
     behavioralData: [
       { day: 'Mon', incidents: 2, intensity: 3 },
@@ -223,9 +223,9 @@ export const useParentStore = create((set, get) => {
       { week: 'Week 4', wordsLearned: 12, cumulative: 31 },
     ],
     completionData: [
-      { name: 'Independent', value: 78, color: '#3ECFB2' },
-      { name: 'Prompted', value: 16, color: '#FFC043' },
-      { name: 'Skipped', value: 6, color: '#FF7E6B' },
+      { name: 'Independent', value: 78, color: '#6366F1' },
+      { name: 'Prompted', value: 16, color: '#F59E0B' },
+      { name: 'Skipped', value: 6, color: '#F43F5E' },
     ],
     sleepMoodData: [
       { day: 'Mon', sleepHours: 7.5, moodScore: 3.5 },
@@ -255,11 +255,11 @@ export const useParentStore = create((set, get) => {
       }
     ],
     skillProgress: [
-      { label: 'Communication',      value: 68, color: '#3ECFB2' },
-      { label: 'Emotion Recognition', value: 75, color: '#C4B5FD' },
-      { label: 'Cognitive / Puzzles', value: 84, color: '#4A90D9' },
-      { label: 'Executive Function',  value: 62, color: '#FF7E6B' },
-      { label: 'Social Interaction',  value: 58, color: '#FFA94D' },
+      { label: 'Communication',      value: 68, color: '#6366F1' },
+      { label: 'Emotion Recognition', value: 75, color: '#A855F7' },
+      { label: 'Cognitive / Puzzles', value: 84, color: '#06B6D4' },
+      { label: 'Executive Function',  value: 62, color: '#F43F5E' },
+      { label: 'Social Interaction',  value: 58, color: '#F59E0B' },
     ],
     promptDependency: [
       { week: 'Week 1', independent: 30, prompted: 50, skipped: 20 },

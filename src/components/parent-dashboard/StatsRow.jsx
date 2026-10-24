@@ -43,19 +43,19 @@ function StatCard({ stat }) {
     <motion.div
       variants={fadeUp}
       ref={ref}
-      className="bg-white/55 backdrop-blur-lg border border-white/60 rounded-3xl p-5 shadow-[0_8px_32px_rgba(62,207,178,0.12),0_2px_8px_rgba(0,0,0,0.05)]"
+      className="bg-white/70 backdrop-blur-lg border border-indigo-100/80 rounded-3xl p-5 shadow-[0_8px_32px_rgba(99,102,241,0.1),0_2px_8px_rgba(15,23,42,0.04)]"
     >
       <div className="flex items-center gap-4 mb-4">
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${stat.iconBg}`}>
           {stat.icon}
         </div>
-        <div className="font-dm-sans text-[13px] text-[#8FA3B1] font-medium leading-tight">
+        <div className="font-dm-sans text-[13px] text-[#64748B] font-medium leading-tight">
           {stat.label}
         </div>
       </div>
       
       <div className="flex items-end justify-between">
-        <div className="font-sora font-bold text-[32px] text-[#1B2D3E] leading-none">
+        <div className="font-sora font-bold text-[32px] text-[#0F172A] leading-none">
           {stat.value === 4.2 && count === Math.ceil(stat.value) ? stat.value : displayValue}
           {stat.suffix}
         </div>
@@ -72,40 +72,40 @@ export default function StatsRow() {
 
   const statCards = [
     {
-      icon: <Gamepad2 size={28} />,
-      iconBg: "bg-[#3ECFB2]/20",
+      icon: <Gamepad2 size={28} className="text-[#6366F1]" />,
+      iconBg: "bg-[#6366F1]/15",
       value: stats.todayMinutes,
       suffix: " min",
       label: "Active Today",
       subLabel: "↑ +3 min vs yesterday",
-      subLabelColor: "text-[#3ECFB2]"
+      subLabelColor: "text-[#6366F1]"
     },
     {
-      icon: <Flame size={28} />,
-      iconBg: "bg-[#FF7E6B]/20",
+      icon: <Flame size={28} className="text-[#F59E0B]" />,
+      iconBg: "bg-[#F59E0B]/15",
       value: stats.weeklyStreak,
       suffix: " days",
       label: "Current Streak",
       subLabel: "Personal best! 🎉",
-      subLabelColor: "text-[#FF7E6B]"
+      subLabelColor: "text-[#F59E0B]"
     },
     {
-      icon: <Puzzle size={28} />,
-      iconBg: "bg-[#4A90D9]/20",
+      icon: <Puzzle size={28} className="text-[#06B6D4]" />,
+      iconBg: "bg-[#06B6D4]/15",
       value: stats.totalModules,
       suffix: "",
       label: "Modules Done",
       subLabel: "This month",
-      subLabelColor: "text-[#8FA3B1]"
+      subLabelColor: "text-[#64748B]"
     },
     {
-      icon: <Smile size={28} />,
-      iconBg: "bg-[#C4B5FD]/30",
+      icon: <Smile size={28} className="text-[#A855F7]" />,
+      iconBg: "bg-[#A855F7]/15",
       value: stats.avgMoodScore, // 4.2
       suffix: "/5",
       label: "Avg Mood Score",
       subLabel: "↑ +0.3 vs last week",
-      subLabelColor: "text-[#3ECFB2]"
+      subLabelColor: "text-[#6366F1]"
     }
   ];
 

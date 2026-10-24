@@ -9,32 +9,32 @@ export default function AISection() {
     {
       icon: <Target />,
       title: "Adaptive Learning Engine",
-      desc: "Adjusts difficulty in real time based on your child's response patterns"
+      desc: "Adjusts difficulty in real time based on your child's response patterns & reaction speed"
     },
     {
       icon: <Smile />,
       title: "Emotion Detection",
-      desc: "Front-camera ML reads mood & attention during sessions (with parental consent)"
+      desc: "On-device camera ML analyzes mood & attention during sessions with 100% private processing"
     },
     {
       icon: <MessageCircle />,
       title: "NLP Speech Analysis",
-      desc: "Tracks verbal communication growth over time"
+      desc: "Tracks AAC verbal communication milestones and spontaneous speech over time"
     },
     {
       icon: <Eye />,
       title: "Attention Monitoring",
-      desc: "Eye-tracking proxy via interaction heatmaps"
+      desc: "Focus state detection via subtle interaction rhythms and responsiveness heatmaps"
     }
   ];
 
-  const labels = ["ABA Engine", "Emotion ML", "NLP Speech", "Eye Tracking", "Progress AI"];
+  const labels = ["SynaptiX Engine", "Emotion ML", "NLP Speech", "Attention AI", "Progress Engine"];
 
   return (
-    <section className="pt-24 pb-18 bg-[#1B2D3E] overflow-hidden">
+    <section className="pt-24 pb-18 bg-[#0F172A] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <span className="font-dm-sans text-[#3ECFB2] font-semibold mb-3 block text-lg uppercase tracking-wider">
+        <div className="text-center mb-16">
+          <span className="font-dm-sans text-[#818CF8] font-semibold mb-3 block text-lg uppercase tracking-wider">
             Powered by Intelligence
           </span>
           <h2 className="font-nunito font-bold text-3xl md:text-[38px] text-white">
@@ -53,14 +53,14 @@ export default function AISection() {
           >
             {aiFeatures.map((feature, index) => (
               <motion.div key={index} variants={fadeUp} className="flex gap-6 items-start">
-                <div className="bg-[#3ECFB2]/20 p-4 rounded-2xl flex-shrink-0 border border-[#3ECFB2]/30 shadow-[0_4px_12px_rgba(62,207,178,0.1)]">
-                  <span className="flex items-center text-[#3ECFB2]">{feature.icon}</span>
+                <div className="bg-[#6366F1]/20 p-4 rounded-2xl flex-shrink-0 border border-[#6366F1]/40 shadow-[0_4px_12px_rgba(99,102,241,0.2)]">
+                  <span className="flex items-center text-[#818CF8]">{feature.icon}</span>
                 </div>
                 <div>
                   <h3 className="font-nunito font-bold text-xl text-white mb-2">
                     {feature.title}
                   </h3>
-                  <p className="font-dm-sans text-[#8FA3B1] leading-relaxed">
+                  <p className="font-dm-sans text-[#94A3B8] leading-relaxed">
                     {feature.desc}
                   </p>
                 </div>
@@ -71,17 +71,17 @@ export default function AISection() {
           {/* Right Column - Animated Diagram */}
           <div className="w-full md:w-[55%] relative h-[450px] md:h-[600px] flex items-center justify-center mt-12 md:mt-0">
             {/* Central Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#3ECFB2]/20 rounded-full blur-[50px]"></div>
-            
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-[#6366F1]/30 rounded-full blur-[60px]"></div>
+
             {/* Center Brain */}
-            <div className="relative z-10 w-32 h-32 bg-[#1B2D3E] border-2 border-[#3ECFB2] rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(62,207,178,0.4)]">
-              <Brain size={64} className="text-[#3ECFB2]" />
+            <div className="relative z-10 w-32 h-32 bg-[#0F172A] border-2 border-[#6366F1] rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(99,102,241,0.5)]">
+              <Brain size={64} className="text-[#818CF8]" />
             </div>
 
             {/* Orbiting Elements */}
             {labels.map((label, index) => {
               const angle = index * (360 / labels.length);
-              
+
               return (
                 <motion.div
                   key={index}
@@ -92,16 +92,16 @@ export default function AISection() {
                   animate={{ opacity: [0.6, 1, 0.6] }}
                   transition={{ repeat: Infinity, duration: 2, delay: index * 0.4, ease: "easeInOut" }}
                 >
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white font-dm-sans font-medium text-sm md:text-base px-6 py-3 rounded-full shadow-lg whitespace-nowrap">
+                  <div className="bg-white/10 backdrop-blur-md border border-indigo-400/30 text-white font-dm-sans font-medium text-sm md:text-base px-6 py-3 rounded-full shadow-lg whitespace-nowrap">
                     {label}
                   </div>
                 </motion.div>
               );
             })}
-            
+
             {/* Connecting Lines Context */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-               <circle cx="50%" cy="50%" r="180" fill="none" stroke="#3ECFB2" strokeWidth="1" strokeDasharray="4 4" />
+            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-25">
+              <circle cx="50%" cy="50%" r="180" fill="none" stroke="#6366F1" strokeWidth="1.5" strokeDasharray="4 4" />
             </svg>
           </div>
         </div>
